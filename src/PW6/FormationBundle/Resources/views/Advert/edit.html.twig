@@ -1,0 +1,20 @@
+{% extends 'PW6FormationBundle::layout.html.twig' %}
+
+{% block title %}Modifier une formation - {{ parent() }}{% endblock %}
+
+{% block pw6formation_body %}
+    <h2>Modifier une formation</h2>
+
+    {{ include('PW6FormationBundle:Advert:form.html.view') }}
+
+    <p>
+        Vous éditez une formation déjà existante, merci de ne pas changer l'esprit général de cette formation.
+    </p>
+
+    <p>
+        <a href="{{ path('pw6_formation_view', {'id': advert.id}) }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à l'annonce
+        </a>
+    </p>
+{% endblock %}

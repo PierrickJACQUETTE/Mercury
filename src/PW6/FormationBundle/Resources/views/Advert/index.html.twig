@@ -1,14 +1,21 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>MFG Center</title>
-    </head>
-    <body>
-        <h1>Bienvenue {{ nom }}</h1>
-        <h2>sur le Gestionnaire des Formations de Mercury</h2>
-        <p>
-            Bientôt vous pourrez accéder au catalogue des formations proposées.
-        </p>
-    </body>
-</html>
+{% extends 'PW6FormationBundle::layout.html.twig' %}
+
+{% block title %}Accueil - {{ parent() }}{% endblock %}
+
+{% block pw6formation_body %}
+    <h2>Listes des formations</h2>
+
+    <ul>
+        {% for advert in listAdverts %}
+            <li>
+                <a href="{{ path('pw6_formation_view', {'id': advert.id}) }}">
+                    {{ advert.title }}
+                </a>
+                par {{ advert.author }}
+                le {{ advert.date|date('d/m/Y') }}
+            </li>
+        {% else %}
+            <li>Pas de formations disponibles</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

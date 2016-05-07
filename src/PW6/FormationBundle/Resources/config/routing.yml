@@ -1,5 +1,5 @@
 pw6_formation_home:
-    path:     /
+    path:     /{page}
     defaults:
         _controller: PW6FormationBundle:Advert:index
         page:        1
@@ -27,7 +27,7 @@ pw6_formation_edit:
 
 pw6_formation_delete:
     path:     /delete/{id}
-    defaults: 
+    defaults:
         _controller: PW6FormationBundle:Advert:delete
     requirements:
         id:   \d+

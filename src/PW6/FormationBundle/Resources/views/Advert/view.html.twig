@@ -1,20 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Affichage de la formation {{ id }}</title>
-    </head>
-    <body>
-        <h1>Formation n°{{ id }}</h1>
-        <div>
-            {% for message in app.session.flashbag.get('info') %}
-            <p>
-                Message flash : {{ message }}
-            </p>
-            {% endfor %}
-        </div>
-        <p>
-            Merde
-        </p>
-    </body>
-</html>
+{% extends 'PW6FormationBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block pw6formation_body %}
+    <h2>{{ advert.title }}</h2>
+    <i>{{ advert.author }}, le {{ advert.date|date('d/m/Y') }}</i>
+    <div class="well">
+        {{ advert.content }}
+    </div>
+
+    <p>
+        <a href="{{ path('pw6_formation_home') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>Retour à la liste
+        </a>
+        <a href="{{ path('pw6_formation_edit', {'id': advert.id }) }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-edit"></i>Modifier cette formation
+        </a>
+        <a href="{{ path('pw6_formation_delete') }}" class="btn btn-danger">
+            <i class="glyphicon glyphicon-trash"></i>Supprimer cette formation
+        </a>
+    </p>
+{% endblock %}

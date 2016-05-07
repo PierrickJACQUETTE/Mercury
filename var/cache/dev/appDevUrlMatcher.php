@@ -102,12 +102,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         if (0 === strpos($pathinfo, '/formation')) {
             // pw6_formation_home
-            if (rtrim($pathinfo, '/') === '/formation') {
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'pw6_formation_home');
-                }
-
-                return array (  '_controller' => 'PW6\\FormationBundle\\Controller\\AdvertController::indexAction',  'page' => 1,  '_route' => 'pw6_formation_home',);
+            if (preg_match('#^/formation(?:/(?P<page>\\d*))?$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'pw6_formation_home')), array (  '_controller' => 'PW6\\FormationBundle\\Controller\\AdvertController::indexAction',  'page' => 1,));
             }
 
             if (0 === strpos($pathinfo, '/formation/ad')) {
