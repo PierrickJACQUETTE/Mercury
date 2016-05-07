@@ -1,0 +1,4 @@
+services:
+#    pw6_formation.example:
+#        class: PW6\FormationBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

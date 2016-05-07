@@ -1,0 +1,7 @@
+pw6_formation:
+    resource: "@PW6FormationBundle/Resources/config/routing.yml"
+    prefix:   /formation
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
