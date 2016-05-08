@@ -8,6 +8,7 @@
     class AdvertController extends Controller {
 
         public function indexAction($page) {
+            $mailer = $this->container->get('mailer');
             if ($page < 1) {
                 throw new NotFoundHttpException('Page "'.$page.'" inexistante.');
             }
@@ -16,11 +17,20 @@
             ));
         }
 
-        public function viewAction($id) {
-            return $this->render('PW6FormationBundle:Advert:view.html.twig', array('id' => $id));
+        public function viewAction() {
+            $advert = new Advert;
+            $advert->setContent('TEMPO');
+            return $this->render('PW6FormationBundle:Advert:view.html.twig', array('advert' => $advert));
         }
 
         public function addAction(Request $req) {
+            $antispam = $this->container->get('pw6_formation.antispam');
+
+            $text = "...";
+            if($antispam->isSpam($text)) {
+                throw new \Exception('Votre message a été détecté comme spam !');
+            }
+
             if($req->isMethod('POST')){
                 $req->getSession()->getFlashBag()->add('notice', 'Formation bien enregistrée.');
                 return $this->redirectToRoute('pw6_formation_view', array('id' => 5));

@@ -107,3 +107,15 @@ f31487,127.0.0.1,GET,http://127.0.0.1:8000/_fragment?_path=_format%3Dhtml%26_loc
 32b9b1,127.0.0.1,GET,http://127.0.0.1:8000/formation,1462639702,,200
 c4e2e0,127.0.0.1,GET,http://127.0.0.1:8000/formation/advert/2,1462639704,e55781,200
 e55781,127.0.0.1,GET,http://127.0.0.1:8000/formation/advert/2,1462639704,,500
+ae7365,127.0.0.1,GET,http://127.0.0.1:8000/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DPW6FormationBundle%253AAdvert%253Amenu,1462642818,5d06df,200
+5d06df,127.0.0.1,GET,http://127.0.0.1:8000/formation,1462642818,,200
+39b2df,127.0.0.1,GET,http://127.0.0.1:8000/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DPW6FormationBundle%253AAdvert%253Amenu,1462642823,3f00e1,200
+f44712,127.0.0.1,GET,http://127.0.0.1:8000/formation/add,1462642824,3f00e1,200
+3f00e1,127.0.0.1,GET,http://127.0.0.1:8000/formation/add,1462642824,,500
+cdc0cf,127.0.0.1,GET,http://127.0.0.1:8000/,1462711025,,200
+456e82,127.0.0.1,GET,http://127.0.0.1:8000/formation/add,1462711851,ce3a46,200
+ce3a46,127.0.0.1,GET,http://127.0.0.1:8000/formation/add,1462711851,,500
+e7f635,127.0.0.1,GET,http://127.0.0.1:8000/formation/add,1462712193,b55088,200
+b55088,127.0.0.1,GET,http://127.0.0.1:8000/formation/add,1462712193,,500
+1466d8,127.0.0.1,GET,http://127.0.0.1:8000/formation/add,1462712772,e46a64,200
+e46a64,127.0.0.1,GET,http://127.0.0.1:8000/formation/add,1462712772,,500
