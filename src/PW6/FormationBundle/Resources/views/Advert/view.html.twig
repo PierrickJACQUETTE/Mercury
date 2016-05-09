@@ -1,23 +1,26 @@
 {% extends 'PW6FormationBundle::layout.html.twig' %}
 
-{% block title %}{{ parent() }}{% endblock %}
-
 {% block pw6formation_body %}
     <h2>{{ advert.title }}</h2>
     <i>{{ advert.author }}, le {{ advert.date|date('d/m/Y') }}</i>
     <div class="well">
-        {{ advert.content }}
+        <p>
+            {{ advert.content }}
+        </p>
+        <p>
+            Requirements : {{ advert.requirements }}
+        </p>
     </div>
 
     <p>
         <a href="{{ path('pw6_formation_home') }}" class="btn btn-default">
-            <i class="glyphicon glyphicon-chevron-left"></i>Retour à la liste
+            <i class="glyphicon glyphicon-chevron-left"></i> Retour à la liste
         </a>
         <a href="{{ path('pw6_formation_edit', {'id': advert.id }) }}" class="btn btn-default">
-            <i class="glyphicon glyphicon-edit"></i>Modifier cette formation
+            <i class="glyphicon glyphicon-edit"></i> Modifier cette formation
         </a>
-        <a href="{{ path('pw6_formation_delete') }}" class="btn btn-danger">
-            <i class="glyphicon glyphicon-trash"></i>Supprimer cette formation
+        <a href="{{ path('pw6_formation_delete', {'id': advert.id }) }}" class="btn btn-danger">
+            <i class="glyphicon glyphicon-trash"></i> Supprimer cette formation
         </a>
     </p>
 {% endblock %}

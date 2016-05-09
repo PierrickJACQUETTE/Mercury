@@ -56,6 +56,11 @@ class Formation
      */
     private $requirements;
 
+    /**
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published = true;
+
 
     /**
      * Get id
@@ -186,5 +191,28 @@ class Formation
     {
         return $this->requirements;
     }
-}
 
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     *
+     * @return Formation
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+}

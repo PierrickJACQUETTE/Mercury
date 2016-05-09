@@ -1,6 +1,7 @@
 <?php
     namespace PW6\FormationBundle\Controller;
 
+    use PW6\FormationBundle\Entity\Formation;
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -17,23 +18,39 @@
             ));
         }
 
-        public function viewAction() {
-            $advert = new Advert;
-            $advert->setContent('TEMPO');
+        public function viewAction($id) {
+            $repository = $this->getDoctrine()->getManager()->getRepository('PW6FormationBundle:Formation');
+            $advert = $repository->find($id);
+            if(null === $advert){
+                throw new NotFoundHttpException('L\'annonce d\'id '.$id.' n\'existe pas.');
+
+            }
             return $this->render('PW6FormationBundle:Advert:view.html.twig', array('advert' => $advert));
         }
 
         public function addAction(Request $req) {
-            $antispam = $this->container->get('pw6_formation.antispam');
+
+            $advert= new Formation();
+            $advert->setDate(new \Datetime());
+            $advert->setTitle('Recherche');
+            $advert->setAuthor('Moi');
+            $advert->setContent('trouver la motivation');
+            $advert->setRequirements('None');
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($advert);
+            $em->flush();
+
+            /*$antispam = $this->container->get('pw6_formation.antispam');
 
             $text = "...";
             if($antispam->isSpam($text)) {
                 throw new \Exception('Votre message a été détecté comme spam !');
-            }
+            }*/
 
             if($req->isMethod('POST')){
                 $req->getSession()->getFlashBag()->add('notice', 'Formation bien enregistrée.');
-                return $this->redirectToRoute('pw6_formation_view', array('id' => 5));
+                return $this->redirectToRoute('pw6_formation_view', array('id' => $advert->getId()));
             }
             return $this->render('PW6FormationBundle:Advert:add.html.twig');
         }
@@ -41,7 +58,7 @@
         public function editAction($id, Request $req){
             if($req->isMethod('POST')){
                 $req->getSession()->getFlashBag()->add('notice', 'Formation bien modifiée.');
-                return $this->redirectToRoute('pw6_formation_view', array('id' => 5));
+                return $this->redirectToRoute('pw6_formation_view', array('id' => $advert->getId()));
             }
             return $this->render('PW6FormationBundle:Advert:edit.html.twig');
         }
