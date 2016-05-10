@@ -3,14 +3,27 @@
 {% block pw6formation_body %}
     <h2>{{ advert.title }}</h2>
     <i>{{ advert.author }}, le {{ advert.date|date('d/m/Y') }}</i>
-    <div class="well">
+    <div class="well well-lg">
         <p>
-            {{ advert.content }}
+            Contenu : <br><br> {{ advert.content }}
+        </p>
+        <br>
+        <p>
+            Lieu : {{ advert.at }}
         </p>
         <p>
-            Requirements : {{ advert.requirements }}
+            Conditions : {{ advert.requirements }}
         </p>
     </div>
+
+    {% for item in listApplications %}
+        <i>{{ item.author }}, le {{ item.date|date('d/m/Y') }}</i>
+        <div class="well well-sm">
+            <p>
+                {{ item.content }}
+            </p>
+        </div>
+    {% endfor %}
 
     <p>
         <a href="{{ path('pw6_formation_home') }}" class="btn btn-default">

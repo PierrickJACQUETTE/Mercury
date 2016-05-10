@@ -57,6 +57,13 @@ class Formation
     private $requirements;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="at", type="string", length=255)
+     */
+    private $at;
+
+    /**
      * @ORM\Column(name="published", type="boolean")
      */
     private $published = true;
@@ -191,4 +198,33 @@ class Formation
     {
         return $this->requirements;
     }
+
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     *
+     * @return Formation
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    public function __construct() {
+        $this->date = new \Datetime();
+    }
+
 }
