@@ -15,8 +15,8 @@ class __TwigTemplate_9a8a0897db6b4c5053bcf0ea2c7caba597aaeec1f618e995cea7d4aab87
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_5b2b3f2402c975a23c0cf03f0494ae78c3c7b6722e8c20e64d71391b52d47734 = $this->env->getExtension("native_profiler");
-        $__internal_5b2b3f2402c975a23c0cf03f0494ae78c3c7b6722e8c20e64d71391b52d47734->enter($__internal_5b2b3f2402c975a23c0cf03f0494ae78c3c7b6722e8c20e64d71391b52d47734_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "PW6FormationBundle:Advert:menu.html.twig"));
+        $__internal_53a17c342f86c66a2ad8c5d98d6484edb398605b99036ecb7a7cf312e0e74884 = $this->env->getExtension("native_profiler");
+        $__internal_53a17c342f86c66a2ad8c5d98d6484edb398605b99036ecb7a7cf312e0e74884->enter($__internal_53a17c342f86c66a2ad8c5d98d6484edb398605b99036ecb7a7cf312e0e74884_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "PW6FormationBundle:Advert:menu.html.twig"));
 
         // line 1
         echo "<ul class='nav nav-pills nav-stacked'>
@@ -46,7 +46,7 @@ class __TwigTemplate_9a8a0897db6b4c5053bcf0ea2c7caba597aaeec1f618e995cea7d4aab87
         echo "</ul>
 ";
         
-        $__internal_5b2b3f2402c975a23c0cf03f0494ae78c3c7b6722e8c20e64d71391b52d47734->leave($__internal_5b2b3f2402c975a23c0cf03f0494ae78c3c7b6722e8c20e64d71391b52d47734_prof);
+        $__internal_53a17c342f86c66a2ad8c5d98d6484edb398605b99036ecb7a7cf312e0e74884->leave($__internal_53a17c342f86c66a2ad8c5d98d6484edb398605b99036ecb7a7cf312e0e74884_prof);
 
     }
 

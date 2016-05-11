@@ -1,10 +1,7 @@
 pw6_formation_home:
-    path:     /{page}
+    path:     /
     defaults:
         _controller: PW6FormationBundle:Advert:index
-        page:        1
-    requirements:
-        page: \d*
 
 pw6_formation_view:
     path:     /advert/{id}

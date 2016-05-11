@@ -3,43 +3,19 @@
 
     use PW6\FormationBundle\Entity\Formation;
     use PW6\FormationBundle\Entity\Application;
+    use PW6\FormationBundle\Form\FormationType;
+    use PW6\FormationBundle\Form\FormationEditType;
+
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
     class AdvertController extends Controller {
 
-        public function indexAction($page) {
-
-            $listAdverts = array(
-                array(
-                    'title'   => 'Recherche développpeur Symfony',
-                    'id'      => 1,
-                    'author'  => 'Alexandre',
-                    'content' => 'Nous recherchons un développeur Symfony débutant sur Lyon. Blabla…',
-                    'date'    => new \Datetime()),
-                array(
-                    'title'   => 'Mission de webmaster',
-                    'id'      => 2,
-                    'author'  => 'Hugo',
-                    'content' => 'Nous recherchons un webmaster capable de maintenir notre site internet. Blabla…',
-                    'date'    => new \Datetime()),
-                array(
-                    'title'   => 'Offre de stage webdesigner',
-                    'id'      => 3,
-                    'author'  => 'Mathieu',
-                    'content' => 'Nous proposons un poste pour webdesigner. Blabla…',
-                    'date'    => new \Datetime())
-            );
-
-
-            $mailer = $this->container->get('mailer');
-            if ($page < 1) {
-                throw new NotFoundHttpException('Page "'.$page.'" inexistante.');
-            }
-            return $this->render('PW6FormationBundle:Advert:index.html.twig',
-                array('listAdverts' => array()
-            ));
+        public function indexAction() {
+            $listAdverts = $this->getDoctrine()->getRepository('PW6FormationBundle:Formation')->findAll();
+            return $this->render('PW6FormationBundle:Advert:index.html.twig', array('listAdverts' => $listAdverts));
         }
 
         public function viewAction($id) {
@@ -61,28 +37,18 @@
         public function addAction(Request $req) {
 
             $advert = new Formation();
-            $advert->setTitle('Recherche');
-            $advert->setAuthor('Moi');
-            $advert->setContent('trouver la motivation');
-            $advert->setAt('sur place');
-            $advert->setRequirements('None');
+            $form = $this->get('form.factory')->create(FormationEditType::class, $advert);
 
-            $app1 = new Application();
-            $app1->setAuthor('Marine');
-            $app1->setContent('Moi Moi');
+            if($req->isMethod('POST') && $form->handleRequest($req)->isValid()){
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($advert);
+                $em->flush();
 
-            $app2 = new Application();
-            $app2->setAuthor('Paul');
-            $app2->setContent('Je veux');
-
-            $app1->setAdvert($advert);
-            $app2->setAdvert($advert);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($advert);
-            $em->persist($app1);
-            $em->persist($app2);
-            $em->flush();
+                $req->getSession()->getFlashBag()->add('notice', 'Formation bien enregistrée.');
+                return $this->redirectToRoute('pw6_formation_view', array('id' => $advert->getID()));
+            }
+            return $this->render('PW6FormationBundle:Advert:add.html.twig',
+                array('form' => $form->createView()));
 
             /*$antispam = $this->container->get('pw6_formation.antispam');
 
@@ -90,12 +56,6 @@
             if($antispam->isSpam($text)) {
                 throw new \Exception('Votre message a été détecté comme spam !');
             }*/
-
-            if($req->isMethod('POST')){
-                $req->getSession()->getFlashBag()->add('notice', 'Formation bien enregistrée.');
-                return $this->redirectToRoute('pw6_formation_view', array('id' => $advert->getId()));
-            }
-            return $this->render('PW6FormationBundle:Advert:add.html.twig');
         }
 
         public function editAction($id, Request $req){
@@ -107,23 +67,50 @@
 
             }
 
-            if($req->isMethod('POST')){
-                $req->getSession()->getFlashBag()->add('notice', 'Formation bien modifiée.');
-                return $this->redirectToRoute('pw6_formation_view', array('id' => $advert->getId()));
+            $form = $this->get('form.factory')->create(FormationType::class, $advert);
+
+            if($req->isMethod('POST') && $form->handleRequest($req)->isValid()){
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($advert);
+                $em->flush();
+
+                $req->getSession()->getFlashBag()->add('notice', 'Formation bien enregistrée.');
+                return $this->redirectToRoute('pw6_formation_view', array('id' => $advert->getID()));
             }
-            return $this->render('PW6FormationBundle:Advert:edit.html.twig', array('advert' => $advert));
+            return $this->render('PW6FormationBundle:Advert:edit.html.twig',
+                array('advert' => $advert, 'form' => $form->createView()));
         }
 
-        public function deleteAction($id) {
-            return $this->render('PW6FormationBundle:Advert:delete.html.twig');
+        public function deleteAction($id, Request $req) {
+            $em = $this->getDoctrine()->getManager();
+            $advert = $em->getRepository('PW6FormationBundle:Formation')->find($id);
+            if(null === $advert){
+                throw new NotFoundHttpException('La formation d\'id '.$id.' n\'existe pas.');
+            }
+            $form = $this->get('form.factory')->create();
+            if($req->isMethod('POST') && $form->handleRequest($req)->isValid()){
+
+                $listApplications = $em
+                    ->getRepository('PW6FormationBundle:Application')
+                    ->findBy(array('advert' => $advert));
+
+                foreach ($listApplications as $item) {
+                    $em->remove($item);
+                }
+
+                $em->remove($advert);
+                $em->flush();
+                $req->getSession()->getFlashBag()->add('info', "La formation a bien été supprimée.");
+                return $this->redirectToRoute('pw6_formation_home');
+            }
+            return $this->render('PW6FormationBundle:Advert:delete.html.twig',
+                array('advert' => $advert, 'form' => $form->createView()));
         }
 
-        public function menuAction($limit) {
-            $listAdverts = array(
-                array('id' => 2, 'title' => 'Recherche développeur Symfony'),
-                array('id' => 5, 'title' => 'Mission de webmaster'),
-                array('id' => 9, 'title' => 'Offre de stage webdesigner')
-            );
+        public function menuAction() {
+            $listAdverts = $this->getDoctrine()
+                ->getRepository('PW6FormationBundle:Formation')
+                ->findBy(array(),array('id' => 'DESC'), 5);
             return $this->render('PW6FormationBundle:Advert:menu.html.twig', array('listAdverts' => $listAdverts));
         }
     }

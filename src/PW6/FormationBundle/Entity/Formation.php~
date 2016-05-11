@@ -64,6 +64,11 @@ class Formation
     private $at;
 
     /**
+     *@ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
      * @ORM\Column(name="published", type="boolean")
      */
     private $published = true;
@@ -227,4 +232,28 @@ class Formation
         $this->date = new \Datetime();
     }
 
+
+    /**
+     * Set at
+     *
+     * @param string $at
+     *
+     * @return Formation
+     */
+    public function setAt($at)
+    {
+        $this->at = $at;
+
+        return $this;
+    }
+
+    /**
+     * Get at
+     *
+     * @return string
+     */
+    public function getAt()
+    {
+        return $this->at;
+    }
 }

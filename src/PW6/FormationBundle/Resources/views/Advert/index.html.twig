@@ -11,7 +11,7 @@
                 <a href="{{ path('pw6_formation_view', {'id': advert.id}) }}">
                     {{ advert.title }}
                 </a>
-                par {{ advert.author }}
+                par {{ advert.author }}, 
                 le {{ advert.date|date('d/m/Y') }}
             </li>
         {% else %}

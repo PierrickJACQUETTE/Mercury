@@ -25,17 +25,13 @@
                     <h4>Dernières formations</h4>
                     {{ render(controller('PW6FormationBundle:Advert:menu', {'limit': 5})) }}
                 </div>
-                <div id="content" class="col-md-9">
+                <div id="content" class="col-md-9">                    
                     {% block body %}{% endblock %}
                 </div>
             </div>
         </div>
 
         <hr>
-
-        <footer><p>
-            Nous sommes le {{ 'now'|date('d/m/Y') }}
-        </p></footer>
 
         {% block javascripts %}
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

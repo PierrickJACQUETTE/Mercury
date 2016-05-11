@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="formation")
  * @ORM\Entity(repositoryClass="PW6\FormationBundle\Repository\FormationRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Formation
 {
@@ -64,10 +65,19 @@ class Formation
     private $at;
 
     /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
      * @ORM\Column(name="published", type="boolean")
      */
     private $published = true;
 
+    public function updateDate()
+    {
+        $this->setUpdatedAt(new \Datetime());
+    }
 
     /**
      * Get id
@@ -250,5 +260,29 @@ class Formation
     public function getAt()
     {
         return $this->at;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Formation
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }
