@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class FormationType extends AbstractType
 {
@@ -27,8 +28,9 @@ class FormationType extends AbstractType
             ->add('content',        TextareaType::class)
             ->add('requirements',   TextType::class)
             ->add('at',             TextType::class)
-            ->add('author',         TextType::class)
-            ->add('published',      CheckboxType::class, array('required' => false))
+            ->add('responsable',    TextType::class)
+            ->add('time',           NumberType::class)
+            ->add('budget',         NumberType::class)
             ->add('save',           SubmitType::class)
         ;
     }

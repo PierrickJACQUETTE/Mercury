@@ -29,13 +29,6 @@ class Application
     private $author;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="content", type="text")
-     */
-    private $content;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
@@ -47,6 +40,11 @@ class Application
      * @ORM\JoinColumn(nullable=false)
      */
     public $advert;
+
+    /**
+     * @ORM\Column(name="valid", type="boolean")
+     */
+    private $valid = false;
 
     public function __construct(){
         $this->date = new \Datetime();
@@ -156,5 +154,29 @@ class Application
     public function getAdvert()
     {
         return $this->advert;
+    }
+
+    /**
+     * Set valid
+     *
+     * @param boolean $valid
+     *
+     * @return Application
+     */
+    public function setValid($valid)
+    {
+        $this->valid = $valid;
+
+        return $this;
+    }
+
+    /**
+     * Get valid
+     *
+     * @return boolean
+     */
+    public function getValid()
+    {
+        return $this->valid;
     }
 }

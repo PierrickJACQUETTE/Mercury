@@ -70,9 +70,25 @@ class Formation
     private $updatedAt;
 
     /**
-     * @ORM\Column(name="published", type="boolean")
+     * @var int
+     *
+     * @ORM\Column(name="time", type="integer")
      */
-    private $published = true;
+    private $time;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="budget", type="integer")
+     */
+    private $budget;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="responsable", type="string", length=255)
+     */
+    private $responsable;
 
     public function updateDate()
     {
@@ -284,5 +300,77 @@ class Formation
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set time
+     *
+     * @param integer $time
+     *
+     * @return Formation
+     */
+    public function setTime($time)
+    {
+        $this->time = $time;
+
+        return $this;
+    }
+
+    /**
+     * Get time
+     *
+     * @return integer
+     */
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    /**
+     * Set budget
+     *
+     * @param integer $budget
+     *
+     * @return Formation
+     */
+    public function setBudget($budget)
+    {
+        $this->budget = $budget;
+
+        return $this;
+    }
+
+    /**
+     * Get budget
+     *
+     * @return integer
+     */
+    public function getBudget()
+    {
+        return $this->budget;
+    }
+
+    /**
+     * Set responsable
+     *
+     * @param string $responsable
+     *
+     * @return Formation
+     */
+    public function setResponsable($responsable)
+    {
+        $this->responsable = $responsable;
+
+        return $this;
+    }
+
+    /**
+     * Get responsable
+     *
+     * @return string
+     */
+    public function getResponsable()
+    {
+        return $this->responsable;
     }
 }

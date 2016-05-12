@@ -13,19 +13,13 @@
     <body>
         <div class="container">
             <div id="header" class="jumbotron">
-                <h1>Plateforme des Formations</h1>
+                {% block header %}{% endblock %}
             </div>
             <div class="row">
                 <div id="menu" class="col-md-3">
-                    <h3>Les formations disponibles</h3>
-                    <ul>
-                        <li><a href="{{ path('pw6_formation_home') }}">Accueil</a></li>
-                        <li><a href="{{ path('pw6_formation_add') }}">Ajouter une formation</a></li>
-                    </ul>
-                    <h4>Dernières formations</h4>
-                    {{ render(controller('PW6FormationBundle:Advert:menu', {'limit': 5})) }}
+                    {% block menu %}{% endblock %}
                 </div>
-                <div id="content" class="col-md-9">                    
+                <div id="content" class="col-md-9">
                     {% block body %}{% endblock %}
                 </div>
             </div>

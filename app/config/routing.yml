@@ -1,7 +1,18 @@
 pw6_formation:
-    resource: "@PW6FormationBundle/Resources/config/routing.yml"
-    prefix:   /formation
+    resource:   "@PW6FormationBundle/Resources/config/routing.yml"
+    prefix:     /formation
 
 app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+    resource:   "@AppBundle/Controller/"
+    type:       annotation
+
+login:
+    path:       /login
+    defaults:
+        _controller: PW6UserBundle:Security:login
+
+login_check:
+    path:       /login_check
+
+logout:
+    path:       /logout

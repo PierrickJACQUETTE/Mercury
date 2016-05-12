@@ -29,13 +29,6 @@ class Application
     private $author;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="content", type="text")
-     */
-    private $content;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
@@ -47,6 +40,11 @@ class Application
      * @ORM\JoinColumn(nullable=false)
      */
     public $advert;
+
+    /**
+     * @ORM\Column(name="valid", type="boolean")
+     */
+    private $valid = false;
 
     public function __construct(){
         $this->date = new \Datetime();
@@ -132,5 +130,29 @@ class Application
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set advert
+     *
+     * @param \PW6\FormationBundle\Entity\Formation $advert
+     *
+     * @return Application
+     */
+    public function setAdvert(\PW6\FormationBundle\Entity\Formation $advert)
+    {
+        $this->advert = $advert;
+
+        return $this;
+    }
+
+    /**
+     * Get advert
+     *
+     * @return \PW6\FormationBundle\Entity\Formation
+     */
+    public function getAdvert()
+    {
+        return $this->advert;
     }
 }

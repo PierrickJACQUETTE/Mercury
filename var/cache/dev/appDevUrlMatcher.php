@@ -110,15 +110,23 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'PW6\\FormationBundle\\Controller\\AdvertController::indexAction',  '_route' => 'pw6_formation_home',);
             }
 
-            if (0 === strpos($pathinfo, '/formation/ad')) {
-                // pw6_formation_view
-                if (0 === strpos($pathinfo, '/formation/advert') && preg_match('#^/formation/advert/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'pw6_formation_view')), array (  '_controller' => 'PW6\\FormationBundle\\Controller\\AdvertController::viewAction',));
+            if (0 === strpos($pathinfo, '/formation/a')) {
+                if (0 === strpos($pathinfo, '/formation/ad')) {
+                    // pw6_formation_view
+                    if (0 === strpos($pathinfo, '/formation/advert') && preg_match('#^/formation/advert/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'pw6_formation_view')), array (  '_controller' => 'PW6\\FormationBundle\\Controller\\AdvertController::viewAction',));
+                    }
+
+                    // pw6_formation_add
+                    if ($pathinfo === '/formation/add') {
+                        return array (  '_controller' => 'PW6\\FormationBundle\\Controller\\AdvertController::addAction',  '_route' => 'pw6_formation_add',);
+                    }
+
                 }
 
-                // pw6_formation_add
-                if ($pathinfo === '/formation/add') {
-                    return array (  '_controller' => 'PW6\\FormationBundle\\Controller\\AdvertController::addAction',  '_route' => 'pw6_formation_add',);
+                // pw6_formation_apply
+                if (0 === strpos($pathinfo, '/formation/apply') && preg_match('#^/formation/apply/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'pw6_formation_apply')), array (  '_controller' => 'PW6\\FormationBundle\\Controller\\AdvertController::applyAction',));
                 }
 
             }
@@ -142,6 +150,27 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
 
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
+        }
+
+        if (0 === strpos($pathinfo, '/log')) {
+            if (0 === strpos($pathinfo, '/login')) {
+                // login
+                if ($pathinfo === '/login') {
+                    return array (  '_controller' => 'PW6\\UserBundle\\Controller\\SecurityController::loginAction',  '_route' => 'login',);
+                }
+
+                // login_check
+                if ($pathinfo === '/login_check') {
+                    return array('_route' => 'login_check');
+                }
+
+            }
+
+            // logout
+            if ($pathinfo === '/logout') {
+                return array('_route' => 'logout');
+            }
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

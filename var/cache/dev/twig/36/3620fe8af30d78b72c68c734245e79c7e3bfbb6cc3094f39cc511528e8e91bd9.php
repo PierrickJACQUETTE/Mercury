@@ -15,8 +15,8 @@ class __TwigTemplate_d9fb910d1f63375f8ff1500e43a74e981c662298096f773dea81c90ec23
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_be380550f22c5aa53e1d66ac1f246f93586fc3038117bb80230912b7ca6623e2 = $this->env->getExtension("native_profiler");
-        $__internal_be380550f22c5aa53e1d66ac1f246f93586fc3038117bb80230912b7ca6623e2->enter($__internal_be380550f22c5aa53e1d66ac1f246f93586fc3038117bb80230912b7ca6623e2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "PW6FormationBundle:Advert:form.html.twig"));
+        $__internal_70f65ec32692ba88dcdfd8bebc30e99561c816349947fd25eebd0ac8260775c2 = $this->env->getExtension("native_profiler");
+        $__internal_70f65ec32692ba88dcdfd8bebc30e99561c816349947fd25eebd0ac8260775c2->enter($__internal_70f65ec32692ba88dcdfd8bebc30e99561c816349947fd25eebd0ac8260775c2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "PW6FormationBundle:Advert:form.html.twig"));
 
         // line 1
         echo "<h3>Formulation d'ajout de Formation</h3>
@@ -74,7 +74,7 @@ class __TwigTemplate_d9fb910d1f63375f8ff1500e43a74e981c662298096f773dea81c90ec23
 
     ";
         // line 25
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "author", array()), 'row');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "responsable", array()), 'row');
         echo "
     ";
         // line 26
@@ -82,28 +82,32 @@ class __TwigTemplate_d9fb910d1f63375f8ff1500e43a74e981c662298096f773dea81c90ec23
         echo "
     ";
         // line 27
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "requirements", array()), 'row');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "time", array()), 'row');
         echo "
     ";
         // line 28
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "published", array()), 'row');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "budget", array()), 'row');
         echo "
     ";
         // line 29
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "save", array()), 'widget', array("attr" => array("class" => "btn btn-primary")));
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "requirements", array()), 'row');
         echo "
     ";
         // line 30
-        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'rest');
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "save", array()), 'widget', array("attr" => array("class" => "btn btn-primary")));
         echo "
     ";
         // line 31
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'rest');
+        echo "
+    ";
+        // line 32
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
 </div>
 ";
         
-        $__internal_be380550f22c5aa53e1d66ac1f246f93586fc3038117bb80230912b7ca6623e2->leave($__internal_be380550f22c5aa53e1d66ac1f246f93586fc3038117bb80230912b7ca6623e2_prof);
+        $__internal_70f65ec32692ba88dcdfd8bebc30e99561c816349947fd25eebd0ac8260775c2->leave($__internal_70f65ec32692ba88dcdfd8bebc30e99561c816349947fd25eebd0ac8260775c2_prof);
 
     }
 
@@ -119,7 +123,7 @@ class __TwigTemplate_d9fb910d1f63375f8ff1500e43a74e981c662298096f773dea81c90ec23
 
     public function getDebugInfo()
     {
-        return array (  101 => 31,  97 => 30,  93 => 29,  89 => 28,  85 => 27,  81 => 26,  77 => 25,  70 => 21,  65 => 19,  61 => 18,  53 => 13,  47 => 10,  43 => 9,  39 => 7,  35 => 6,  31 => 5,  27 => 4,  22 => 1,);
+        return array (  105 => 32,  101 => 31,  97 => 30,  93 => 29,  89 => 28,  85 => 27,  81 => 26,  77 => 25,  70 => 21,  65 => 19,  61 => 18,  53 => 13,  47 => 10,  43 => 9,  39 => 7,  35 => 6,  31 => 5,  27 => 4,  22 => 1,);
     }
 }
 /* <h3>Formulation d'ajout de Formation</h3>*/
@@ -146,10 +150,11 @@ class __TwigTemplate_d9fb910d1f63375f8ff1500e43a74e981c662298096f773dea81c90ec23
 /*         </div>*/
 /*     </div>*/
 /* */
-/*     {{ form_row(form.author) }}*/
+/*     {{ form_row(form.responsable) }}*/
 /*     {{ form_row(form.at) }}*/
+/*     {{ form_row(form.time) }}*/
+/*     {{ form_row(form.budget) }}*/
 /*     {{ form_row(form.requirements) }}*/
-/*     {{ form_row(form.published) }}*/
 /*     {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}*/
 /*     {{ form_rest(form) }}*/
 /*     {{ form_end(form) }}*/

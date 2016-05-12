@@ -2,6 +2,24 @@
 
 {% block title %}Formations - {{ parent() }}{% endblock %}
 
+{% block header %}
+    <h1>Plateforme des Formations</h1>
+{% endblock %}
+
+{% block menu %}
+    <h3>Les formations disponibles</h3>
+    <ul>
+        <li><a href="{{ path('pw6_formation_home') }}">Accueil</a></li>
+        {% if is_granted('ROLE_AUTEUR') %}
+            <li><a href="{{ path('pw6_formation_add') }}">Ajouter une formation</a></li>
+        {% endif %}
+
+    </ul>
+    <h4>Dernières formations</h4>
+    {{ render(controller('PW6FormationBundle:Advert:menu')) }}
+{% endblock %}
+
+
 {% block body %}
 
     <h1>Formations</h1>

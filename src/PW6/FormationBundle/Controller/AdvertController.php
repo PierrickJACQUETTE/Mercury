@@ -10,6 +10,7 @@
 
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
     class AdvertController extends Controller {
 
@@ -23,7 +24,6 @@
             $advert = $em->getRepository('PW6FormationBundle:Formation')->find($id);
             if(null === $advert){
                 throw new NotFoundHttpException('L\'annonce d\'id '.$id.' n\'existe pas.');
-
             }
 
             $listApplications = $em
@@ -34,37 +34,30 @@
                 array('advert' => $advert, 'listApplications' => $listApplications));
         }
 
+        /**
+         * @Security("has_role('ROLE_AUTEUR')")
+         */
         public function addAction(Request $req) {
-
             $advert = new Formation();
             $form = $this->get('form.factory')->create(FormationEditType::class, $advert);
 
             if($req->isMethod('POST') && $form->handleRequest($req)->isValid()){
                 $em = $this->getDoctrine()->getManager();
+                $advert->setAuthor($this->getUser());
                 $em->persist($advert);
                 $em->flush();
 
                 $req->getSession()->getFlashBag()->add('notice', 'Formation bien enregistrée.');
                 return $this->redirectToRoute('pw6_formation_view', array('id' => $advert->getID()));
             }
-            return $this->render('PW6FormationBundle:Advert:add.html.twig',
-                array('form' => $form->createView()));
-
-            /*$antispam = $this->container->get('pw6_formation.antispam');
-
-            $text = "...";
-            if($antispam->isSpam($text)) {
-                throw new \Exception('Votre message a été détecté comme spam !');
-            }*/
+            return $this->render('PW6FormationBundle:Advert:add.html.twig', array('form' => $form->createView()));
         }
 
         public function editAction($id, Request $req){
-
             $repository = $this->getDoctrine()->getManager()->getRepository('PW6FormationBundle:Formation');
             $advert = $repository->find($id);
             if(null === $advert){
                 throw new NotFoundHttpException('L\'annonce d\'id '.$id.' n\'existe pas.');
-
             }
 
             $form = $this->get('form.factory')->create(FormationType::class, $advert);
@@ -79,6 +72,22 @@
             }
             return $this->render('PW6FormationBundle:Advert:edit.html.twig',
                 array('advert' => $advert, 'form' => $form->createView()));
+        }
+
+        public function applyAction($id) {
+            $repository = $this->getDoctrine()->getManager()->getRepository('PW6FormationBundle:Formation');
+            $user = $this->getUser();
+            $advert = $repository->find($id);
+            if(null === $advert){
+                throw new NotFoundHttpException('L\'annonce d\'id '.$id.' n\'existe pas.');
+            }
+            $apply = new Application();
+            $apply->setAuthor($user);
+            $apply->setAdvert($advert);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($apply);
+            $em->flush();
+            return $this->render('PW6FormationBundle:Advert:apply.html.twig', array('id' => $advert->getID()));
         }
 
         public function deleteAction($id, Request $req) {

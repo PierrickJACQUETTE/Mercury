@@ -9,31 +9,37 @@
         </p>
         <br>
         <p>
+            Responsable : {{ advert.responsable }}
+        </p>
+        <p>
             Lieu : {{ advert.at }}
         </p>
         <p>
             Conditions : {{ advert.requirements }}
         </p>
+        <p>
+            Temps (jours) : {{ advert.time }}
+        </p>
     </div>
-
-    {% for item in listApplications %}
-        <i>{{ item.author }}, le {{ item.date|date('d/m/Y') }}</i>
-        <div class="well well-sm">
-            <p>
-                {{ item.content }}
-            </p>
-        </div>
-    {% endfor %}
 
     <p>
         <a href="{{ path('pw6_formation_home') }}" class="btn btn-default">
             <i class="glyphicon glyphicon-chevron-left"></i> Retour à la liste
         </a>
-        <a href="{{ path('pw6_formation_edit', {'id': advert.id }) }}" class="btn btn-default">
-            <i class="glyphicon glyphicon-edit"></i> Modifier cette formation
-        </a>
-        <a href="{{ path('pw6_formation_delete', {'id': advert.id }) }}" class="btn btn-danger">
-            <i class="glyphicon glyphicon-trash"></i> Supprimer cette formation
-        </a>
+        {% if is_granted('ROLE_AUTEUR') %}
+            <a href="{{ path('pw6_formation_edit', {'id': advert.id }) }}" class="btn btn-warning">
+                <i class="glyphicon glyphicon-edit"></i> Modifier cette formation
+            </a>
+        {% endif %}
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('pw6_formation_apply', {'id': advert.id }) }}" class="btn btn-success">
+                <i class="glyphicon glyphicon-chevron-right"></i> Appliquer à cette formation
+            </a>
+        {% endif %}
+        {% if is_granted('ROLE_AUTEUR') %}
+            <a href="{{ path('pw6_formation_delete', {'id': advert.id }) }}" class="btn btn-danger">
+                <i class="glyphicon glyphicon-trash"></i> Supprimer cette formation
+            </a>
+        {% endif %}
     </p>
 {% endblock %}

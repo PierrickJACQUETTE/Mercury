@@ -15,6 +15,13 @@ pw6_formation_add:
     defaults:
         _controller: PW6FormationBundle:Advert:add
 
+pw6_formation_apply:
+    path:     /apply/{id}
+    defaults:
+        _controller: PW6FormationBundle:Advert:apply
+    requirements:
+        id:   \d+
+
 pw6_formation_edit:
     path:     /edit/{id}
     defaults:

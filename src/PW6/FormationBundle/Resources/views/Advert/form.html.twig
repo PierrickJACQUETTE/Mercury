@@ -22,10 +22,11 @@
         </div>
     </div>
 
-    {{ form_row(form.author) }}
+    {{ form_row(form.responsable) }}
     {{ form_row(form.at) }}
+    {{ form_row(form.time) }}
+    {{ form_row(form.budget) }}
     {{ form_row(form.requirements) }}
-    {{ form_row(form.published) }}
     {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
     {{ form_rest(form) }}
     {{ form_end(form) }}
