@@ -23,7 +23,6 @@ class FormationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date',           DateType::class)
             ->add('title',          TextType::class)
             ->add('content',        TextareaType::class)
             ->add('requirements',   TextType::class)

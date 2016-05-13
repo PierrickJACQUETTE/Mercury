@@ -21,20 +21,20 @@ class __TwigTemplate_56afd26ba6ca11d0f2cd7038bc73ecbdfb75b73e3d170851a7ce507c669
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_5923f49068edb9384986a0eb14ff9260ba8996f9f9b65de6dad9360bd15b7a6f = $this->env->getExtension("native_profiler");
-        $__internal_5923f49068edb9384986a0eb14ff9260ba8996f9f9b65de6dad9360bd15b7a6f->enter($__internal_5923f49068edb9384986a0eb14ff9260ba8996f9f9b65de6dad9360bd15b7a6f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "PW6FormationBundle:Advert:view.html.twig"));
+        $__internal_93ffa654082d68b6d407a0bc4022f26ba59147ee920444b1f01337f1421d1a6c = $this->env->getExtension("native_profiler");
+        $__internal_93ffa654082d68b6d407a0bc4022f26ba59147ee920444b1f01337f1421d1a6c->enter($__internal_93ffa654082d68b6d407a0bc4022f26ba59147ee920444b1f01337f1421d1a6c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "PW6FormationBundle:Advert:view.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_5923f49068edb9384986a0eb14ff9260ba8996f9f9b65de6dad9360bd15b7a6f->leave($__internal_5923f49068edb9384986a0eb14ff9260ba8996f9f9b65de6dad9360bd15b7a6f_prof);
+        $__internal_93ffa654082d68b6d407a0bc4022f26ba59147ee920444b1f01337f1421d1a6c->leave($__internal_93ffa654082d68b6d407a0bc4022f26ba59147ee920444b1f01337f1421d1a6c_prof);
 
     }
 
     // line 3
     public function block_pw6formation_body($context, array $blocks = array())
     {
-        $__internal_5b4a2bfb846015047f549ce40bce2aecec737dbc355e633853bff119b158e0d7 = $this->env->getExtension("native_profiler");
-        $__internal_5b4a2bfb846015047f549ce40bce2aecec737dbc355e633853bff119b158e0d7->enter($__internal_5b4a2bfb846015047f549ce40bce2aecec737dbc355e633853bff119b158e0d7_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "pw6formation_body"));
+        $__internal_c09b090fa4a59b7a8f8e92d139d801fd6a4965baa907d3a0e7d965d4c8c65de2 = $this->env->getExtension("native_profiler");
+        $__internal_c09b090fa4a59b7a8f8e92d139d801fd6a4965baa907d3a0e7d965d4c8c65de2->enter($__internal_c09b090fa4a59b7a8f8e92d139d801fd6a4965baa907d3a0e7d965d4c8c65de2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "pw6formation_body"));
 
         // line 4
         echo "    <h2>";
@@ -44,37 +44,44 @@ class __TwigTemplate_56afd26ba6ca11d0f2cd7038bc73ecbdfb75b73e3d170851a7ce507c669
         // line 5
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "author", array()), "html", null, true);
         echo ", le ";
-        echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "date", array()), "d/m/Y"), "html", null, true);
+        echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "date", array()), "d/m/Y H:i:s"), "html", null, true);
+        echo "
+        ";
+        // line 6
+        if ( !(null === $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "updatedAt", array()))) {
+            echo ", modifiée le ";
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "updatedAt", array()), "d/m/Y H:i:s"), "html", null, true);
+        }
         echo "</i>
     <div class=\"well well-lg\">
         <p>
             Contenu : <br><br> ";
-        // line 8
+        // line 9
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "content", array()), "html", null, true);
         echo "
         </p>
         <br>
         <p>
             Responsable : ";
-        // line 12
+        // line 13
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "responsable", array()), "html", null, true);
         echo "
         </p>
         <p>
             Lieu : ";
-        // line 15
+        // line 16
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "at", array()), "html", null, true);
         echo "
         </p>
         <p>
             Conditions : ";
-        // line 18
+        // line 19
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "requirements", array()), "html", null, true);
         echo "
         </p>
         <p>
             Temps (jours) : ";
-        // line 21
+        // line 22
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "time", array()), "html", null, true);
         echo "
         </p>
@@ -82,15 +89,15 @@ class __TwigTemplate_56afd26ba6ca11d0f2cd7038bc73ecbdfb75b73e3d170851a7ce507c669
 
     <p>
         <a href=\"";
-        // line 26
+        // line 27
         echo $this->env->getExtension('routing')->getPath("pw6_formation_home");
         echo "\" class=\"btn btn-default\">
             <i class=\"glyphicon glyphicon-chevron-left\"></i> Retour à la liste
         </a>
         ";
-        // line 29
+        // line 30
         if ($this->env->getExtension('security')->isGranted("ROLE_AUTEUR")) {
-            // line 30
+            // line 31
             echo "            <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("pw6_formation_edit", array("id" => $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-warning\">
@@ -98,10 +105,10 @@ class __TwigTemplate_56afd26ba6ca11d0f2cd7038bc73ecbdfb75b73e3d170851a7ce507c669
             </a>
         ";
         }
-        // line 34
+        // line 35
         echo "        ";
         if ($this->env->getExtension('security')->isGranted("ROLE_USER")) {
-            // line 35
+            // line 36
             echo "            <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("pw6_formation_apply", array("id" => $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-success\">
@@ -109,10 +116,10 @@ class __TwigTemplate_56afd26ba6ca11d0f2cd7038bc73ecbdfb75b73e3d170851a7ce507c669
             </a>
         ";
         }
-        // line 39
+        // line 40
         echo "        ";
         if ($this->env->getExtension('security')->isGranted("ROLE_AUTEUR")) {
-            // line 40
+            // line 41
             echo "            <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("pw6_formation_delete", array("id" => $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "id", array()))), "html", null, true);
             echo "\" class=\"btn btn-danger\">
@@ -120,11 +127,11 @@ class __TwigTemplate_56afd26ba6ca11d0f2cd7038bc73ecbdfb75b73e3d170851a7ce507c669
             </a>
         ";
         }
-        // line 44
+        // line 45
         echo "    </p>
 ";
         
-        $__internal_5b4a2bfb846015047f549ce40bce2aecec737dbc355e633853bff119b158e0d7->leave($__internal_5b4a2bfb846015047f549ce40bce2aecec737dbc355e633853bff119b158e0d7_prof);
+        $__internal_c09b090fa4a59b7a8f8e92d139d801fd6a4965baa907d3a0e7d965d4c8c65de2->leave($__internal_c09b090fa4a59b7a8f8e92d139d801fd6a4965baa907d3a0e7d965d4c8c65de2_prof);
 
     }
 
@@ -140,14 +147,15 @@ class __TwigTemplate_56afd26ba6ca11d0f2cd7038bc73ecbdfb75b73e3d170851a7ce507c669
 
     public function getDebugInfo()
     {
-        return array (  124 => 44,  116 => 40,  113 => 39,  105 => 35,  102 => 34,  94 => 30,  92 => 29,  86 => 26,  78 => 21,  72 => 18,  66 => 15,  60 => 12,  53 => 8,  45 => 5,  40 => 4,  34 => 3,  11 => 1,);
+        return array (  131 => 45,  123 => 41,  120 => 40,  112 => 36,  109 => 35,  101 => 31,  99 => 30,  93 => 27,  85 => 22,  79 => 19,  73 => 16,  67 => 13,  60 => 9,  51 => 6,  45 => 5,  40 => 4,  34 => 3,  11 => 1,);
     }
 }
 /* {% extends 'PW6FormationBundle::layout.html.twig' %}*/
 /* */
 /* {% block pw6formation_body %}*/
 /*     <h2>{{ advert.title }}</h2>*/
-/*     <i>{{ advert.author }}, le {{ advert.date|date('d/m/Y') }}</i>*/
+/*     <i>{{ advert.author }}, le {{ advert.date|date('d/m/Y H:i:s') }}*/
+/*         {% if advert.updatedAt is not null %}, modifiée le {{ advert.updatedAt|date('d/m/Y H:i:s') }}{% endif %}</i>*/
 /*     <div class="well well-lg">*/
 /*         <p>*/
 /*             Contenu : <br><br> {{ advert.content }}*/

@@ -2,7 +2,8 @@
 
 {% block pw6formation_body %}
     <h2>{{ advert.title }}</h2>
-    <i>{{ advert.author }}, le {{ advert.date|date('d/m/Y') }}</i>
+    <i>{{ advert.author }}, le {{ advert.date|date('d/m/Y H:i:s') }}
+        {% if advert.updatedAt is not null %}, modifiée le {{ advert.updatedAt|date('d/m/Y H:i:s') }}{% endif %}</i>
     <div class="well well-lg">
         <p>
             Contenu : <br><br> {{ advert.content }}

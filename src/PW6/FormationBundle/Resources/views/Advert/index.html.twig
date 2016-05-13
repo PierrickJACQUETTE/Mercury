@@ -11,8 +11,9 @@
                 <a href="{{ path('pw6_formation_view', {'id': advert.id}) }}">
                     {{ advert.title }}
                 </a>
-                par {{ advert.author }}, 
+                par {{ advert.author }},
                 le {{ advert.date|date('d/m/Y') }}
+                {% if advert.updatedAt is not null %}, modifiée le {{ advert.updatedAt|date('d/m/Y H:i:s') }}{% endif %}
             </li>
         {% else %}
             <li>Pas de formations disponibles</li>

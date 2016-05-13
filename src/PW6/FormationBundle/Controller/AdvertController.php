@@ -4,7 +4,6 @@
     use PW6\FormationBundle\Entity\Formation;
     use PW6\FormationBundle\Entity\Application;
     use PW6\FormationBundle\Form\FormationType;
-    use PW6\FormationBundle\Form\FormationEditType;
 
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -39,7 +38,7 @@
          */
         public function addAction(Request $req) {
             $advert = new Formation();
-            $form = $this->get('form.factory')->create(FormationEditType::class, $advert);
+            $form = $this->get('form.factory')->create(FormationType::class, $advert);
 
             if($req->isMethod('POST') && $form->handleRequest($req)->isValid()){
                 $em = $this->getDoctrine()->getManager();
@@ -63,6 +62,7 @@
             $form = $this->get('form.factory')->create(FormationType::class, $advert);
 
             if($req->isMethod('POST') && $form->handleRequest($req)->isValid()){
+                $advert->setUpdatedAt(new \DateTime());
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($advert);
                 $em->flush();
