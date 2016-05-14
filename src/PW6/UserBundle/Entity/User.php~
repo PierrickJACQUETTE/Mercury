@@ -6,6 +6,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
 * User
+*
+* @ORM\Table(name="user")
+* @ORM\Entity(repositoryClass="PW6\UserBundle\Repository\UserRepository")
 */
 class User implements UserInterface
 {
@@ -45,7 +48,6 @@ class User implements UserInterface
     private $perso;
 
     public function __construct(){
-        $this->salt = "";
         $this->roles = array('ROLE_USER');
     }
 

@@ -7,12 +7,13 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
-class UserType extends AbstractType
+class PersonnelType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -21,13 +22,15 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class)
-            ->add('password', RepeatedType::class, array(
-                    'type' => PasswordType::class,
-                    'first_options'  => array('label' => 'Mot de passe'),
-                    'second_options' => array('label' => 'Confirmation mot de passe')))
-            ->add('mail', EmailType::class)
-            ->add('save', SubmitType::class, array('label'=>'Inscription'));
+            ->add('fname',      TextType::class)
+            ->add('pname',      TextType::class)
+            ->add('birth',      DateType::class, array('widget'=>'single_text'))
+            ->add('sex',        CheckboxType::class, array('required' => false))
+            ->add('contrat',    CheckboxType::class, array('required' => false))
+            ->add('time',       NumberType::class)
+            ->add('salary',     NumberType::class)
+            ->add('superieur',  TextType::class)
+            ->add('save',       SubmitType::class, array('label'=>'Ajouter cet employé'));
     }
 
     /**
@@ -36,7 +39,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PW6\UserBundle\Entity\User'
+            'data_class' => 'PW6\UserBundle\Entity\Personnel'
         ));
     }
 }

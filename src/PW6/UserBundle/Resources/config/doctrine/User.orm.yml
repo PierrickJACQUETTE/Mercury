@@ -12,18 +12,23 @@ PW6\UserBundle\Entity\User:
         username:
             type: string
             length: 255
-        fname:
-            type: string
-            length: 255
-        pname:
-            type: string
-            length: 255
+            unique: true
         password:
             type: string
             length: 255
         mail:
             type: string
             length: 255
+            unique: true
         roles:
             type: array
+        salt:
+            type: string
+            length: 255
+    oneToOne:
+        perso:
+            targetEntity: Personnel
+            joinColumn:
+                name: perso_id
+                referencedColumnName: id
     lifecycleCallbacks: {  }

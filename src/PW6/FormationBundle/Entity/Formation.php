@@ -79,9 +79,16 @@ class Formation
     /**
      * @var int
      *
-     * @ORM\Column(name="budget", type="integer")
+     * @ORM\Column(name="cost", type="integer")
      */
-    private $budget;
+    private $cost;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nb", type="integer")
+     */
+    private $nb;
 
     /**
      * @var string
@@ -372,5 +379,53 @@ class Formation
     public function getResponsable()
     {
         return $this->responsable;
+    }
+
+    /**
+     * Set cost
+     *
+     * @param integer $cost
+     *
+     * @return Formation
+     */
+    public function setCost($cost)
+    {
+        $this->cost = $cost;
+
+        return $this;
+    }
+
+    /**
+     * Get cost
+     *
+     * @return integer
+     */
+    public function getCost()
+    {
+        return $this->cost;
+    }
+
+    /**
+     * Set nb
+     *
+     * @param integer $nb
+     *
+     * @return Formation
+     */
+    public function setNb($nb)
+    {
+        $this->nb = $nb;
+
+        return $this;
+    }
+
+    /**
+     * Get nb
+     *
+     * @return integer
+     */
+    public function getNb()
+    {
+        return $this->nb;
     }
 }

@@ -1,0 +1,85 @@
+{% extends "::layout.html.twig" %}
+
+{% block header %}
+    <h1>Votre fiche personnelle</h1>
+{% endblock %}
+
+{% block body %}
+{{ parent() }}
+{% if user != null %}
+<div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-4"><h1 class="text-primary center">Profil</h1></div>
+    <div class="col-xs-12 col-md-6 col-md-offset-4 well bold">
+        <div class="col-xs-7">Nom</div><div class="col-xs-5 text-info">{{ user.nom }}</div>
+        <div class="col-xs-7">E-mail</div><div class="col-xs-5 text-info">{{ user.mail }}</div>
+        <div class="col-xs-7">Date de naissance</div><div class="col-xs-5 text-info">{{ user.dateNaissance.format("j/m/Y") }}</div>
+        <div class="col-xs-7">Salarié</div>
+        <div class="col-xs-5 text-info">
+            {% if salarie != null %}
+                {{ salarie.nom ~ " " ~ salarie.prenom }}
+            {% else %}
+                NA
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% if salarie != null %}
+<div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-4 well bold">
+        <div class="col-xs-7">Nom</div><div class="col-xs-5 text-info">{{ salarie.nom }}</div>
+        <div class="col-xs-7">Prénom</div><div class="col-xs-5 text-info">{{ salarie.prenom }}</div>
+        <div class="col-xs-7">Date de naissance</div><div class="col-xs-5 text-info">{{ salarie.dateNaissance.format("j/m/Y") }}</div>
+        <div class="col-xs-7">Sexe</div><div class="col-xs-5 text-info">{{ salarie.sexe }}</div>
+        <div class="col-xs-7">Date d'entrée</div><div class="col-xs-5 text-info">{{ salarie.dateEntre.format("j/m/y") }}</div>
+        <div class="col-xs-7">Type de contrat</div><div class="col-xs-5 text-info">{{ salarie.typecontrat }}</div>
+        {% if salarie.typeContrat != "CDI"%}
+        <div class="col-xs-7">Durée du contrat</div><div class="col-xs-5 text-info">{{ salarie.dureeContrat }} mois</div>
+        {% endif %}
+        <div class="col-xs-7">Salaire</div><div class="col-xs-5 text-info">{{ salarie.salaire }}€</div>
+        {% if superieur != null %}
+        <div class="col-xs-7">Supérieur</div><div class="col-xs-5 text-info">{{ superieur.nom ~" "~ superieur.prenom }}</div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+<div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-2 center">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            {% if salarie != null %}
+            <a href="/conges/view/{{salarie.id}}">
+                <button class="btn btn-warning">Accéder à mes congés</button>
+            </a>
+            {% else %}
+                <a href="/conges">
+                    <button class="btn btn-warning">Accéder aux congés</button>
+                </a>
+            {% endif %}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <a href="/utilisateur/edit/{{app.user.id}}">
+                <button class="btn btn-info">Modifier mon profil</button>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <a href="/utilisateur/delete/{{app.user.id}}">
+                <button class="btn btn-danger">Supprimer mon profil</button>
+            </a>
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <a href="">
+                <button class="btn btn-success">Ajouter ce profil aux administrateurs</button>
+            </a>
+        </div>
+        {% else %}
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <a href="/logout">
+                <button class="btn btn-primary">Déconnexion</button>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<br/>
+{% endif %}
+{% endblock %}

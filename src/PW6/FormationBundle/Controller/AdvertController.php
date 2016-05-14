@@ -84,6 +84,8 @@
             $apply = new Application();
             $apply->setAuthor($user);
             $apply->setAdvert($advert);
+            $tmp = $advert->getNd();
+            $advert->setNb($tmp);
             $em = $this->getDoctrine()->getManager();
             $em->persist($apply);
             $em->flush();

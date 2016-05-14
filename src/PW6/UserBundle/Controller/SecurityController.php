@@ -33,8 +33,8 @@
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
                 $em->flush();
-                $req->getSession()->getFlashBag()->add("notice", $user->getFname()." ".$user->getPname()." : Vous avez bien été enregistré");
-                return $this->redirect($this->generateUrl("user_view", array('id'=>$user->getId())));
+                $req->getSession()->getFlashBag()->add("notice", "Vous avez bien été enregistré");
+                return $this->redirect($this->generateUrl("pw6_user_view", array('id'=>$user->getId())));
             }
             return $this->render('PW6UserBundle:Security:signin.html.twig',array('form'=>$form->createView()));
         }
