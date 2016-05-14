@@ -15,6 +15,10 @@ PW6\UserBundle\Entity\Personnel:
         pname:
             type: string
             length: 255
+        username:
+            type: string
+            length: 255
+            unique: true
         birth:
             type: datetime
         date:

@@ -27,7 +27,7 @@ class UserType extends AbstractType
                     'type' =>   PasswordType::class,
                     'first_options'  => array('label' => 'Mot de passe'),
                     'second_options' => array('label' => 'Confirmation mot de passe')))
-            ->add('perso',      EntityType::class, array('class' => 'PW6UserBundle:Personnel', 'choice_label' => 'fname'))
+            ->add('perso',      EntityType::class, array('class' => 'PW6UserBundle:Personnel', 'choice_label' => 'username'))
             ->add('mail',       EmailType::class)
             ->add('save',       SubmitType::class, array('label'=>'Inscription'));
     }

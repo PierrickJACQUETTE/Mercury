@@ -23,41 +23,24 @@ class UserController extends Controller{
             array("page_name"=>"Utilisateur", "user"=>$user, "perso"=>$perso));
     }
 
-    public function editAction(Request $request, $id){
-        $user = $this->getDoctrine()
-                        ->getManager()
-                        ->getRepository("UserBundle:User")
-                        ->find($id);
-
-        if($user == null){
-            throw $this->createNotFoundException("L'utilisateur ".$id." n'existe pas.");
-        }
-
-        if($this->getUser() == null){
-            throw $this->createAccessDeniedException("Veuillez-vous connecter.");
-        }
-
+    public function editAction(Request $req, $id){
+        $user = $this->getDoctrine()->getManager()->getRepository("PW6UserBundle:User")->find($id);
+        if($user == null){ throw $this->createNotFoundException("L'utilisateur ".$id." n'existe pas."); }
+        if($this->getUser() == null){ throw $this->createAccessDeniedException("Veuillez-vous connecter."); }
         if($user->getUsername() != $this->getUser()->getUsername()){
             throw $this->createAccessDeniedException("Vous n'êtes pas autorisés à voir les profils des autres.");
         }
+        $form = $this->get('form.factory')->create(UserType::class, $user);
 
-        $form = $this->createForm(UserType::class, $user)
-                        ->remove('save')
-                        ->remove('salarie')
-                        ->add('save', SubmitType::class, array('label'=>'Modifier'));
-
-        if($form->handleRequest($request)->isValid()){
+        if($form->handleRequest($req)->isValid()){
             $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-
-            return $this->redirect($this->generateUrl("utilisateur_view", array('id'=>$user->getId())));
+            return $this->redirect($this->generateUrl("pw6_user_view", array('id'=>$user->getId())));
         }
-
-        return $this->render('UserBundle:User:edit.html.twig',array('form'=>$form->createView()));
+        return $this->render('PW6UserBundle:User:edit.html.twig',array('form'=>$form->createView()));
     }
 
     /**

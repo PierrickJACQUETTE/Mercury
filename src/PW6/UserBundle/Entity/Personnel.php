@@ -15,6 +15,11 @@ class Personnel
     /**
      * @var string
      */
+    private $username;
+
+    /**
+     * @var string
+     */
     private $fname;
 
     /**
@@ -315,5 +320,29 @@ class Personnel
     public function getFormation()
     {
         return $this->formation;
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     *
+     * @return Personnel
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
     }
 }
