@@ -1,7 +1,0 @@
-services:
-    pw6_formation.antispam:
-        class: PW6\Antispam\PW6Antispam
-        arguments:
-            - "@mailer"
-            - %locale%
-            - 128
