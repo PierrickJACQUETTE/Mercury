@@ -111,17 +111,9 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
 
             if (0 === strpos($pathinfo, '/formation/a')) {
-                if (0 === strpos($pathinfo, '/formation/ad')) {
-                    // pw6_formation_view
-                    if (0 === strpos($pathinfo, '/formation/advert') && preg_match('#^/formation/advert/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'pw6_formation_view')), array (  '_controller' => 'PW6\\FormationBundle\\Controller\\AdvertController::viewAction',));
-                    }
-
-                    // pw6_formation_add
-                    if ($pathinfo === '/formation/add') {
-                        return array (  '_controller' => 'PW6\\FormationBundle\\Controller\\AdvertController::addAction',  '_route' => 'pw6_formation_add',);
-                    }
-
+                // pw6_formation_view
+                if (0 === strpos($pathinfo, '/formation/advert') && preg_match('#^/formation/advert/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'pw6_formation_view')), array (  '_controller' => 'PW6\\FormationBundle\\Controller\\AdvertController::viewAction',));
                 }
 
                 // pw6_formation_apply
@@ -131,14 +123,30 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
+        }
+
+        if (0 === strpos($pathinfo, '/user')) {
+            if (0 === strpos($pathinfo, '/user/ad')) {
+                // pw6_user_view
+                if (0 === strpos($pathinfo, '/user/advert') && preg_match('#^/user/advert/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'pw6_user_view')), array (  '_controller' => 'PW6UserBundle:Advert:view',));
+                }
+
+                // pw6_formation_add
+                if ($pathinfo === '/user/add') {
+                    return array (  '_controller' => 'PW6UserBundle:Advert:add',  '_route' => 'pw6_formation_add',);
+                }
+
+            }
+
             // pw6_formation_edit
-            if (0 === strpos($pathinfo, '/formation/edit') && preg_match('#^/formation/edit/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'pw6_formation_edit')), array (  '_controller' => 'PW6\\FormationBundle\\Controller\\AdvertController::editAction',));
+            if (0 === strpos($pathinfo, '/user/edit') && preg_match('#^/user/edit/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'pw6_formation_edit')), array (  '_controller' => 'PW6UserBundle:Advert:edit',));
             }
 
             // pw6_formation_delete
-            if (0 === strpos($pathinfo, '/formation/delete') && preg_match('#^/formation/delete/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'pw6_formation_delete')), array (  '_controller' => 'PW6\\FormationBundle\\Controller\\AdvertController::deleteAction',));
+            if (0 === strpos($pathinfo, '/user/delete') && preg_match('#^/user/delete/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'pw6_formation_delete')), array (  '_controller' => 'PW6UserBundle:Advert:delete',));
             }
 
         }
@@ -171,6 +179,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array('_route' => 'logout');
             }
 
+        }
+
+        // signin
+        if ($pathinfo === '/signin') {
+            return array (  '_controller' => 'PW6\\UserBundle\\Controller\\SecurityController::signinAction',  '_route' => 'signin',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

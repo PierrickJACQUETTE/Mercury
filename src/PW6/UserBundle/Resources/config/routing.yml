@@ -1,0 +1,25 @@
+pw6_user_view:
+    path:     /advert/{id}
+    defaults:
+        _controller: PW6UserBundle:Advert:view
+    requirements:
+        id:   \d+
+
+pw6_formation_add:
+    path:     /add
+    defaults:
+        _controller: PW6UserBundle:Advert:add
+
+pw6_formation_edit:
+    path:     /edit/{id}
+    defaults:
+        _controller: PW6UserBundle:Advert:edit
+    requirements:
+        id:   \d+
+
+pw6_formation_delete:
+    path:     /delete/{id}
+    defaults:
+        _controller: PW6UserBundle:Advert:delete
+    requirements:
+        id:   \d+
