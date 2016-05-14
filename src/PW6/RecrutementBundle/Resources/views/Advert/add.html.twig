@@ -1,0 +1,13 @@
+{% extends 'PW6RecrutementBundle::layout.html.twig' %}
+
+{% block title %}Ajouter un poste - {{ parent() }}{% endblock %}
+
+{% block pw6formation_body %}
+    <h2>Ajouter un poste</h2>
+
+    {{ include('PW6RecrutementBundle:Advert:form.html.twig') }}
+
+    <p>
+        Vous êtes sur le point d'ajouter un poste, vérifier qu'un poste similaire n'existe pas déjà.
+    </p>
+{% endblock %}

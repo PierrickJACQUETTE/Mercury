@@ -1,0 +1,22 @@
+{% extends 'PW6RecrutementBundle::layout.html.twig' %}
+
+{% block title %}Accueil - {{ parent() }}{% endblock %}
+
+{% block pw6recrutement_body %}
+    <h2>Listes des Recrutement</h2>
+
+    <ul>
+        {% for advert in listAdverts %}
+            <li>
+                <a href="{{ path('pw6_recrutement_view', {'id': advert.id}) }}">
+                    {{ advert.title }}
+                </a>
+                par {{ advert.author }},
+                le {{ advert.date|date('d/m/Y') }}
+                {% if advert.updatedAt is not null %}, modifiée le {{ advert.updatedAt|date('d/m/Y H:i:s') }}{% endif %}
+            </li>
+        {% else %}
+            <li>Pas de postes disponibles</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
