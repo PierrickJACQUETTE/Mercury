@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -24,9 +26,9 @@ class PersonnelType extends AbstractType
         $builder
             ->add('fname',      TextType::class)
             ->add('pname',      TextType::class)
-            ->add('birth',      DateType::class, array('widget'=>'single_text'))
-            ->add('sex',        CheckboxType::class, array('required' => false))
-            ->add('contrat',    CheckboxType::class, array('required' => false))
+            ->add('birth',      DateType::class , array('widget' => 'single_text', 'format' => 'dd-MM-yyyy'))
+            ->add('sex',        ChoiceType::class, array('choices'  => array('Femme' => true,'Homme' => false)))
+            ->add('contrat',    ChoiceType::class, array('choices'  => array('CDI' => true,'CDD' => false)))
             ->add('time',       NumberType::class)
             ->add('salary',     NumberType::class)
             ->add('superieur',  TextType::class)

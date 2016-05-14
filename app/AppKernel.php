@@ -18,7 +18,6 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new PW6\FormationBundle\PW6FormationBundle(),
             new PW6\UserBundle\PW6UserBundle(),
-            new PW6\RecrutementBundle\PW6RecrutementBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

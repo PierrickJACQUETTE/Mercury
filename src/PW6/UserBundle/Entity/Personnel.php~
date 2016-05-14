@@ -292,28 +292,4 @@ class Personnel
     {
         return $this->date;
     }
-
-    /**
-     * Set formation
-     *
-     * @param integer $formation
-     *
-     * @return Personnel
-     */
-    public function setFormation($formation)
-    {
-        $this->formation = $formation;
-
-        return $this;
-    }
-
-    /**
-     * Get formation
-     *
-     * @return integer
-     */
-    public function getFormation()
-    {
-        return $this->formation;
-    }
 }

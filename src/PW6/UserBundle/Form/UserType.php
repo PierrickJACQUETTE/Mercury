@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -21,13 +22,14 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class)
-            ->add('password', RepeatedType::class, array(
-                    'type' => PasswordType::class,
+            ->add('username',   TextType::class)
+            ->add('password',   RepeatedType::class, array(
+                    'type' =>   PasswordType::class,
                     'first_options'  => array('label' => 'Mot de passe'),
                     'second_options' => array('label' => 'Confirmation mot de passe')))
-            ->add('mail', EmailType::class)
-            ->add('save', SubmitType::class, array('label'=>'Inscription'));
+            ->add('perso',      EntityType::class, array('class' => 'PW6UserBundle:Personnel', 'choice_label' => 'fname'))
+            ->add('mail',       EmailType::class)
+            ->add('save',       SubmitType::class, array('label'=>'Inscription'));
     }
 
     /**

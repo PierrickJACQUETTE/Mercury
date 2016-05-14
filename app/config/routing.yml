@@ -1,7 +1,3 @@
-pw6_recrutement:
-    resource: "@PW6RecrutementBundle/Resources/config/routing.yml"
-    prefix:   /
-
 pw6_formation:
     resource:   "@PW6FormationBundle/Resources/config/routing.yml"
     prefix:     /formation

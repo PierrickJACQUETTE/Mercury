@@ -17,6 +17,8 @@ PW6\UserBundle\Entity\Personnel:
             length: 255
         birth:
             type: datetime
+        date:
+            type: datetime
         sex:
             type: boolean
         contrat:
@@ -24,6 +26,8 @@ PW6\UserBundle\Entity\Personnel:
         time:
             type: integer
         salary:
+            type: integer
+        formation:
             type: integer
         superieur:
             type: string

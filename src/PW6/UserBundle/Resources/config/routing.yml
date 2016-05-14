@@ -18,3 +18,8 @@ pw6_user_delete:
         _controller: PW6UserBundle:User:delete
     requirements:
         id:   \d+
+
+pw6_admin_add:
+    path:   /admin/add
+    defaults:
+        _controller: PW6UserBundle:Admin:add

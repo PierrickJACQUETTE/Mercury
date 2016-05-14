@@ -1,0 +1,65 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/dataTables.bootstrap.min.css') }}" type="text/css" />
+{% endblock %}
+
+{% block main %}
+{{ parent() }}
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-bordered table-striped" id="table_utilisateur" data-page-length='50'>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Date de naissance</th>
+                    <th>E-mail</th>
+                    <th>Login</th>
+                    <th class="center">Profil</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for utilisateur in utilisateurs %}
+                <tr>
+                    <td>{{ utilisateur.nom }}</td>
+                    <td>{{ utilisateur.prenom }}</td>
+                    <td>{{ utilisateur.dateNaissance.format("j/m/y") }}</td>
+                    <td>{{ utilisateur.mail }}</td>
+                    <td>{{ utilisateur.username }}</td>
+                    <td class="center">
+                        <a href="/utilisateur/view/{{utilisateur.id}}">
+                            <button class="btn btn-primary">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" charset="utf8" src="{{ asset('bundles/app/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" charset="utf8" src="{{ asset('bundles/app/js/dataTables.bootstrap.min.js') }}"></script>
+    <script>
+    $(document).ready( function () {
+        $('#table_utilisateur').DataTable({
+            "oLanguage": {
+                "sSearch": "Rechercher :",
+                "sInfo": " _START_ à _END_ sur _TOTAL_ utilisateurs",
+                "sLengthMenu": "Afficher _MENU_ utilisateurs",
+                "oPaginate": {
+                    "sNext": "Suivant",
+                    "sPrevious": "Précédent"
+                }
+            }
+        });
+    } );
+    </script>
+{% endblock %}

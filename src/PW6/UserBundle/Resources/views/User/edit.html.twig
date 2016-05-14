@@ -1,11 +1,13 @@
 {% extends "::layout.html.twig" %}
 
-{% block header %}<h1>Inscription</h1>{% endblock %}
-
-{% block body %}
+{% block main %}
 {{ parent() }}
 <div class="row">
-    <div class="col-xs-12 col-md-8">
+    <div class="col-xs-12 col-md-8 col-md-offset-3">
+        <div class="center">
+            <h1 class="text-primary">Edition</h1>
+        </div>
+
         <div class="well">
             <p class="text-danger center"><em>Tous les champs sont obligatoires</em></p>
             {{ form_start(form, {'attr': {'class': 'form-horizontal', 'role' : 'form'}}) }}
@@ -13,11 +15,19 @@
             {{ form_errors(form) }}
 
             <div class="form-group">
-              {{ form_label(form.username, "Identifiant", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-              {{ form_errors(form.username) }}
-              <div class="col-sm-7">
-                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
-              </div>
+                {{ form_label(form.nom, "Nom", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                {{ form_errors(form.nom) }}
+                <div class="col-sm-7">
+                    {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.prenom, "Prénom", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                {{ form_errors(form.prenom) }}
+                <div class="col-sm-7">
+                    {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                </div>
             </div>
 
             <div class="form-group">
@@ -29,11 +39,11 @@
             </div>
 
             <div class="form-group">
-                {{ form_label(form.perso, "Numéro entreprise", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                {{ form_errors(form.perso) }}
-                <div class="col-sm-7">
-                    {{ form_widget(form.perso, {'attr': {'class': 'form-control'}}) }}
-                </div>
+              {{ form_label(form.username, "Login", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+              {{ form_errors(form.username) }}
+              <div class="col-sm-7">
+                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+              </div>
             </div>
 
             <div class="form-group">
@@ -45,10 +55,18 @@
             </div>
 
             <div class="form-group">
-              {{ form_label(form.password.second, "Confirmation", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+              {{ form_label(form.password.second, "Confirmation mot de passe", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
               {{ form_errors(form.password.second) }}
               <div class="col-sm-7">
                 {{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              {{ form_label(form.dateNaissance, "Date de naissance", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+              {{ form_errors(form.dateNaissance) }}
+              <div class="col-sm-7">
+                {{ form_widget(form.dateNaissance, {'attr': {'class': 'form-control'}}) }}
               </div>
             </div>
 
