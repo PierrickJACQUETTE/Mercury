@@ -20,8 +20,9 @@ PW6\UserBundle\Entity\User:
             type: string
             length: 255
             unique: true
-        roles:
-            type: array
+        role:
+            type: string
+            length: 255
         salt:
             type: string
             length: 255

@@ -24,26 +24,24 @@ class AdminController extends Controller{
         return $this->render('PW6UserBundle:Admin:add.html.twig',array('form'=>$form->createView()));
     }
 
-    public function addAmin($id){
+    public function upAction($id){
         $user = $this->getDoctrine()->getManager()->getRepository("PW6UserBundle:User")->find($id);
         if($user == null){
             throw new Exception("Impossible d'ajouter cet utilisateur à la liste des admin (id:".$id.")", 1);
         }
-        $roles = $user->getRoles();
-        if(!in_array('ROLE_ADMIN', $roles)){
-            $roles[] = 'ROLE_ADMIN';
-            $user->setRoles($roles);
+        $role = $user->getRole();
+        if($role != 'ROLE_ADMIN'){
+            $user->setRole('ROLE_ADMIN');
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
         }
+        return $this->render('PW6UserBundle:Admin:up.html.twig');
     }
 
-    public function indexSalarieAction(){
-        $salaries = $this->getDoctrine()->getManager()->getRepository("PW6UserBundle:Salarie")->findAll();
-        return $this->render('PW6UserBundle:Admin:indexSalarie.html.twig', array("page_name"=>"index salarié", "salaries"=>$salaries));
-    }
-
-    public function indexUtilisateurAction(){
-        $utilisateurs = $this->getDoctrine()->getManager()->getRepository("PW6UserBundle:User")->findAll();
-        return $this->render('PW6UserBundle:Admin:indexUtilisateur.html.twig', array("page_name"=>"index utilisateur", "utilisateurs"=>$utilisateurs));
+    public function indexAction(){
+        $list = $this->getDoctrine()->getRepository('PW6UserBundle:Personnel')->findAll();
+        return $this->render('PW6UserBundle:Admin:index.html.twig', array('list' => $list));
     }
 }
 

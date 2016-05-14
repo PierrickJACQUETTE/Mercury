@@ -19,7 +19,19 @@ pw6_user_delete:
     requirements:
         id:   \d+
 
+pw6_admin_up:
+    path:   /admin/up/{id}
+    defaults:
+        _controller: PW6UserBundle:Admin:up
+    requirements:
+        id:   \d+
+
 pw6_admin_add:
     path:   /admin/add
     defaults:
         _controller: PW6UserBundle:Admin:add
+
+pw6_admin_index:
+    path:   /admin/index
+    defaults:
+        _controller: PW6UserBundle:Admin:index

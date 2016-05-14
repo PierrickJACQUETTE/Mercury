@@ -21,7 +21,7 @@
         <p>
             Temps (jours) : {{ advert.time }}
         </p>
-        {% if is_granted('ROLE_AUTEUR') %}
+        {% if user.role == 'ROLE_ADMIN' %}
             <p>
                 Nombre de places restantes : {{ advert.nb }}
             </p>
@@ -32,17 +32,17 @@
         <a href="{{ path('pw6_formation_home') }}" class="btn btn-default">
             <i class="glyphicon glyphicon-chevron-left"></i> Retour à la liste
         </a>
-        {% if is_granted('ROLE_AUTEUR') %}
+        {% if user.role == 'ROLE_ADMIN' %}
             <a href="{{ path('pw6_formation_edit', {'id': advert.id }) }}" class="btn btn-warning">
                 <i class="glyphicon glyphicon-edit"></i> Modifier cette formation
             </a>
         {% endif %}
-        {% if is_granted('ROLE_USER') %}
+        {% if user.role == 'ROLE_USER' %}
             <a href="{{ path('pw6_formation_apply', {'id': advert.id }) }}" class="btn btn-success">
                 <i class="glyphicon glyphicon-chevron-right"></i> Appliquer à cette formation
             </a>
         {% endif %}
-        {% if is_granted('ROLE_AUTEUR') %}
+        {% if user.role == 'ROLE_ADMIN' %}
             <a href="{{ path('pw6_formation_delete', {'id': advert.id }) }}" class="btn btn-danger">
                 <i class="glyphicon glyphicon-trash"></i> Supprimer cette formation
             </a>

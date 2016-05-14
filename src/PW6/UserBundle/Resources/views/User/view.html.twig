@@ -49,11 +49,11 @@
     <a href="{{ path('pw6_user_edit', {'id': user.id }) }}" class="btn btn-warning">
         <i class="glyphicon glyphicon-edit"></i> Modifier mon profil
     </a>
-    {% if is_granted('ROLE_ADMIN') %}
+    {% if user.role == 'ROLE_ADMIN' %}
     <a href="{{ path('pw6_user_delete', {'id': user.id }) }}" class="btn btn-danger">
-        <i class="glyphicon glyphicon-trash"></i> Supprimer cette formation
+        <i class="glyphicon glyphicon-trash"></i> Supprimer ce profil
     </a>
-    <a href="">
+    <a href="{{ path('pw6_admin_up', {'id': user.id }) }}" class="btn btn-primary">
         <i class="glyphicon glyphicon-tower"></i> Ajouter ce profil aux administrateurs
     </a>
     {% else %}

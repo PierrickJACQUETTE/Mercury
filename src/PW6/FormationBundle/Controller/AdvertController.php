@@ -30,7 +30,7 @@
                 ->findBy(array('advert' => $advert));
 
             return $this->render('PW6FormationBundle:Advert:view.html.twig',
-                array('advert' => $advert, 'listApplications' => $listApplications));
+                array('advert' => $advert, 'user'=> $this->getUser(), 'listApplications' => $listApplications));
         }
 
         /**

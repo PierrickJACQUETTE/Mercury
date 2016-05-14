@@ -1,0 +1,18 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Accueil - {{ parent() }}{% endblock %}
+
+{% block header %}<h1>Liste du personnel</h1>{% endblock %}
+
+{% block body %}
+    <ul>
+        {% for item in list %}
+            <li>
+                <a href="{{ path('pw6_formation_view', {'id': item.id}) }}">
+                    {{ item.username }}
+                </a>,
+                {{ item.fname }} {{ item.pname }} {{ item.id }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
