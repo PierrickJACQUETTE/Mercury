@@ -9,7 +9,11 @@
         {% endblock %}
     </head>
     <body>
-
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <a class="navbar-brand" href="{{ path('homepage') }}">Mercury</a>
+          </div>
+        </nav>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

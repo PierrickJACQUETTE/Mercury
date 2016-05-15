@@ -77,6 +77,7 @@
         public function applyAction($id) {
             $repository = $this->getDoctrine()->getManager()->getRepository('PW6FormationBundle:Formation');
             $user = $this->getUser();
+            $perso = $user->getPerso();
             $advert = $repository->find($id);
             if(null === $advert){
                 throw new NotFoundHttpException('L\'annonce d\'id '.$id.' n\'existe pas.');
@@ -84,7 +85,10 @@
             $apply = new Application();
             $apply->setAuthor($user);
             $apply->setAdvert($advert);
-            $tmp = $advert->getNd();
+            $tmp = $advert->getTime();
+            $a = $perso->getFormation();
+            $perso->setFormation($tmp - $a);
+            $tmp = $advert->getNb();
             $advert->setNb($tmp);
             $em = $this->getDoctrine()->getManager();
             $em->persist($apply);
