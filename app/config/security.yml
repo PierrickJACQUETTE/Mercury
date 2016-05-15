@@ -4,8 +4,8 @@ security:
 
     access_control:
         - {path: ^/formation, roles: ROLE_USER }
-        - {path: ^/user, roles: ROLE_USER }
-        - {path: ^/admin, roles: ROLE_ADMIN }
+        - {path: ^/user/view/, roles: ROLE_USER }
+        - {path: ^/user/admin/, roles: ROLE_ADMIN }
 
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext

@@ -1,5 +1,5 @@
 pw6_user_view:
-    path:     /advert/{id}
+    path:     /view/{id}
     defaults:
         _controller: PW6UserBundle:User:view
     requirements:

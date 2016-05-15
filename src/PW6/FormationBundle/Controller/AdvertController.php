@@ -29,8 +29,11 @@
                 ->getRepository('PW6FormationBundle:Application')
                 ->findBy(array('advert' => $advert));
 
+            $max = sizeof($listApplications);
+            $nb = $advert->getNb();
+
             return $this->render('PW6FormationBundle:Advert:view.html.twig',
-                array('advert' => $advert, 'user'=> $this->getUser(), 'listApplications' => $listApplications));
+                array('advert' => $advert, 'user'=> $this->getUser(), 'listApplications' => $listApplications, 'max' => $max, 'nb' => $nb));
         }
 
         /**
@@ -76,24 +79,30 @@
 
         public function applyAction($id) {
             $repository = $this->getDoctrine()->getManager()->getRepository('PW6FormationBundle:Formation');
-            $user = $this->getUser();
-            $perso = $user->getPerso();
             $advert = $repository->find($id);
             if(null === $advert){
                 throw new NotFoundHttpException('L\'annonce d\'id '.$id.' n\'existe pas.');
             }
-            $apply = new Application();
-            $apply->setAuthor($user);
-            $apply->setAdvert($advert);
-            $tmp = $advert->getTime();
-            $a = $perso->getFormation();
-            $perso->setFormation($tmp - $a);
-            $tmp = $advert->getNb();
-            $advert->setNb($tmp);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($apply);
-            $em->flush();
-            return $this->render('PW6FormationBundle:Advert:apply.html.twig', array('id' => $advert->getID()));
+
+            $check = $this->getDoctrine()->getManager()->getRepository('PW6FormationBundle:Application');
+            $tmp = $check->findBy(array('author' => $this->getUser()->getUsername(), 'id' => $id));
+            if (null === $tmp) {
+                $apply = new Application();
+                $apply->setAuthor($this->getUser()->getUsername());
+                $apply->setAdvert($advert);
+
+                $var = $this->getUser()->getPerso()->getFormation();
+                $tmp = $advert->getTime();
+                if (($var - $tmp) < 0) {
+                    return $this->render('PW6FormationBundle:Advert:error.html.twig');
+                }
+                $this->getUser()->getPerso()->setFormation($var - $tmp);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($apply);
+                $em->flush();
+            }
+            return $this->render('PW6FormationBundle:Advert:apply.html.twig', array('id' => $id));
         }
 
         public function deleteAction($id, Request $req) {

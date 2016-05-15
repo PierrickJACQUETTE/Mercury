@@ -28,6 +28,15 @@
         {% endif %}
     </div>
 
+    {% if user.role == 'ROLE_ADMIN' && max %}
+    {% for item in listAdverts %}
+
+    {% endfor %}
+    <div class="well well-lg">
+    </div>
+    {% endif %}
+
+
     <p>
         <a href="{{ path('pw6_formation_home') }}" class="btn btn-default">
             <i class="glyphicon glyphicon-chevron-left"></i> Retour à la liste

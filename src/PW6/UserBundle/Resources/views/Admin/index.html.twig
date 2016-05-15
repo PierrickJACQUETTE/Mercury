@@ -12,7 +12,16 @@
                     {{ item.username }}
                 </a>,
                 {{ item.fname }} {{ item.pname }} {{ item.id }}
+                <a href="{{ path('pw6_admin_up', {'id': item.id }) }}">
+                    <i class="glyphicon glyphicon-log-in"></i> En faire un administrateur
+                </a>
             </li>
         {% endfor %}
     </ul>
+    <br>
+    <p>
+        <a href="{{ path('pw6_admin_add') }}" class="btn btn-primary">
+            <i class="glyphicon glyphicon-log-in"></i> Ajouter un utilisateur
+        </a>
+    </p>
 {% endblock %}

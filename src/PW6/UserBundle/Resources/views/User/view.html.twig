@@ -46,7 +46,7 @@
     <a href="{{ path('pw6_user_edit', {'id': user.id }) }}" class="btn btn-warning">
         <i class="glyphicon glyphicon-edit"></i> Modifier mon profil
     </a>
-    {% if user.role == 'ROLE_ADMIN' %}
+    {% if app.user.getRole() == 'ROLE_ADMIN' %}
     <a href="{{ path('pw6_user_delete', {'id': user.id }) }}" class="btn btn-danger">
         <i class="glyphicon glyphicon-trash"></i> Supprimer ce profil
     </a>
@@ -57,6 +57,6 @@
     <a href="/logout" class="btn btn-danger">
         <i class="glyphicon glyphicon-off"></i> Déconnexion
     </a>
-{% endif %}
+    {% endif %}
 </p>
 {% endblock %}

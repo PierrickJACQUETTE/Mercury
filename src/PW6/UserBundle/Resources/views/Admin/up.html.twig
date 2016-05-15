@@ -1,5 +1,16 @@
 {% extends "::layout.html.twig" %}
 
-{% block header %}<h1>Inscription</h1>{% endblock %}
+{% block header %}<h1>Passage administrateur</h1>{% endblock %}
 
-{% block body %}Felicitation{% endblock %}
+{% block body %}
+<div class="well well-lg">
+    <p>
+        L'utilisateur selectionné est devenu un administrateur.
+    </p>
+</div>
+<p>
+    <a href="{{ path('pw6_admin_index') }}" class="btn btn-default">
+        <i class="glyphicon glyphicon-chevron-left"></i> Retour à la liste
+    </a>
+</p>
+{% endblock %}

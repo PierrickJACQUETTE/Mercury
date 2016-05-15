@@ -11,7 +11,7 @@
         public function loginAction(Request $req)
         {
             if($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')){
-                return $this->redirectToRoute('pw6_formation_home');
+                return $this->redirect($this->generateUrl("pw6_user_view", array('id'=>$this->getUser()->getId())));
             }
             $authenticationUtils = $this->get('security.authentication_utils');
             return $this->render('PW6UserBundle:Security:login.html.twig',
