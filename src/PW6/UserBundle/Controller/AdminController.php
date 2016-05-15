@@ -19,7 +19,7 @@ class AdminController extends Controller{
             $em->persist($perso);
             $em->flush();
             $req->getSession()->getFlashBag()->add("notice", "Nouvelle fiche personnel crée.");
-            return $this->redirect($this->generateUrl("pw6_user_view", array('id'=>$perso->getId())));
+            return $this->redirect($this->generateUrl("pw6_admin_index"));
         }
         return $this->render('PW6UserBundle:Admin:add.html.twig',array('form'=>$form->createView()));
     }

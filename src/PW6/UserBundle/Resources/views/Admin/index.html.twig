@@ -8,7 +8,7 @@
     <ul>
         {% for item in list %}
             <li>
-                <a href="{{ path('pw6_formation_view', {'id': item.id}) }}">
+                <a href="{{ path('pw6_user_view', {'id': item.id}) }}">
                     {{ item.username }}
                 </a>,
                 {{ item.fname }} {{ item.pname }} {{ item.id }}

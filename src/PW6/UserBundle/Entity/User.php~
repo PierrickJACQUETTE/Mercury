@@ -46,7 +46,7 @@ class User implements UserInterface
 
     public function __construct(){
         $this->salt = "";
-        $this->roles = 'ROLE_USER';
+        $this->role = 'ROLE_USER';
     }
 
     public function getSalt()
@@ -148,7 +148,7 @@ class User implements UserInterface
      */
     public function setRole($role)
     {
-        $this->roles = $roles;
+        $this->role = $role;
 
         return $this;
     }
@@ -160,7 +160,7 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        return $this->roles;
+        return array('ROLE_USER');
     }
 
     /**
@@ -199,5 +199,20 @@ class User implements UserInterface
         $this->salt = $salt;
 
         return $this;
+    }
+    /**
+     * @var string
+     */
+    private $role;
+
+
+    /**
+     * Get role
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
     }
 }

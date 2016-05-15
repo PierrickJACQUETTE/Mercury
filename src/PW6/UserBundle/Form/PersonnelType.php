@@ -26,6 +26,7 @@ class PersonnelType extends AbstractType
         $builder
             ->add('fname',      TextType::class)
             ->add('pname',      TextType::class)
+            ->add('username',      TextType::class)
             ->add('birth',      DateType::class , array('widget' => 'single_text', 'format' => 'dd-MM-yyyy'))
             ->add('sex',        ChoiceType::class, array('choices'  => array('Femme' => true,'Homme' => false)))
             ->add('contrat',    ChoiceType::class, array('choices'  => array('CDI' => true,'CDD' => false)))

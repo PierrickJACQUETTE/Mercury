@@ -46,7 +46,7 @@ class User implements UserInterface
 
     public function __construct(){
         $this->salt = "";
-        $this->roles = 'ROLE_USER';
+        $this->role = 'ROLE_USER';
     }
 
     public function getSalt()
@@ -160,7 +160,7 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        return $this->roles;
+        return array('ROLE_USER');
     }
 
     /**
