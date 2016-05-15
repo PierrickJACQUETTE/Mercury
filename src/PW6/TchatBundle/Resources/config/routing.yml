@@ -1,5 +1,0 @@
-pw6_tchat_homepage:
-    path:     /tchat
-    defaults: { _controller: PW6TchatBundle:Default:index }
-    requirements:
-        _method:  GET
