@@ -25,8 +25,7 @@ class ApplicationRecrutementType extends AbstractType
     {
         $builder
         ->add('author',         TextType::class)
-        ->add ('cv',            FileType::class, array('label' => 'Cv (PDF file)'))
-        ->add ('lDM',           FileType::class, array('label' => 'LDM (PDF file)'))
+        ->add ('brochure',      FileType::class, array('label' => 'Brochure (PDF file)'))
         ->add('save',           SubmitType::class)
         ;
     }

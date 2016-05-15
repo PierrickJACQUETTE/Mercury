@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+
+<body style="height:1000px">
+
+    <nav class="navbar navbar-inverse">
+        <h1 style="color:white">Salon de Tchat</h1>
+        <br>
+    </nav>
+
+    <div style="height:100%" id="login">
+        <form action="" id="loginform">
+            <p>Ceci est un tchat en NodeJs, entrez votre pseudo et votre email</p>
+            <input type="text" name="login" id="username" placeholder="Nom d'utilisateur">
+            <input type="mail" name="mail" id="mail" placeholder="E-mail">
+            <input type="submit" value="Envoyer">
+        </form>
+    </div>
+
+    <div class="well" id="messages">
+        <div class="message" id="msgtpl" style="display:none;">
+            <div class="info">
+                <strong>{{ user.username }}</strong> at {{ h }}:{{ m }}
+                <p>{{ message }}</p>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+            <br>
+            <form action="" id="form">
+                <input type="text" id="message" class="text">
+                <input type="submit" id="send" value="Envoye mon message !" class="submit">
+            </form>
+            <br>
+        </div>
+    </nav>
+
+
+    <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="js/mustache.js"></script>
+    <script src="http://localhost:1337/socket.io/socket.io.js"></script>
+    <script src="js/client.js"></script>
+</body>
+</html>

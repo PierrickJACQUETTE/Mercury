@@ -1,7 +1,3 @@
-pw6_tchat:
-    resource: "@PW6TchatBundle/Resources/config/routing.yml"
-    prefix:   /
-
 pw6_recrutement:
     resource: "@PW6RecrutementBundle/Resources/config/routing.yml"
     prefix:   /recrutement

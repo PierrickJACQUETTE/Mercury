@@ -48,16 +48,7 @@ class ApplicationRecrutement
      * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
      * @Assert\File(mimeTypes={ "application/pdf" })
      */
-    private $lDM;
-
-    /**
-     * @ORM\Column(type="string")
-     *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
-     * @Assert\File(mimeTypes={ "application/pdf" })
-     */
-    private $cv;
-
+    private $brochure;
 
     /**
      * @ORM\Column(name="valid", type="boolean")
@@ -151,51 +142,27 @@ class ApplicationRecrutement
     }
 
     /**
-     * Set cv
+     * Set brochure
      *
-     * @param string $cv
+     * @param string $brochure
      *
      * @return ApplicationRecrutement
      */
-    public function setCv($brochure)
+    public function setBrochure($brochure)
     {
-        $this->cv = $brochure;
+        $this->brochure = $brochure;
 
         return $this;
     }
 
     /**
-     * Get cv
+     * Get brochure
      *
      * @return string
      */
-    public function getCv()
+    public function getBrochure()
     {
-        return $this->cv;
-    }
-
-    /**
-     * Set ldm
-     *
-     * @param string $lDM
-     *
-     * @return ApplicationRecrutement
-     */
-    public function setLDM($brochure)
-    {
-        $this->lDM = $brochure;
-
-        return $this;
-    }
-
-    /**
-     * Get ldm
-     *
-     * @return string
-     */
-    public function getLDM()
-    {
-        return $this->lDM ;
+        return $this->brochure;
     }
 
 

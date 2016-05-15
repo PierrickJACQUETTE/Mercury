@@ -34,8 +34,7 @@
                   <li>
                       par {{ candidat.author }},
                       le {{ candidat.date|date('d/m/Y') }}
-                      <a href="{{ asset('uploads/CV/' ~ candidat.cv) }}">View CV</a>
-                      <a href="{{ asset('uploads/LDM/' ~ candidat.lDM) }}">View LDM</a>
+                      <a href="{{ asset('uploads/brochures/' ~ candidat.brochure) }}">View CV (PDF)</a>
                   </li>
               {% else %}
                   <li>Pas de Candidature disponibles</li>
