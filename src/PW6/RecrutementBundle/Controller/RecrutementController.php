@@ -4,6 +4,7 @@ namespace PW6\RecrutementBundle\Controller;
 use PW6\RecrutementBundle\Entity\Recrutement;
 use PW6\RecrutementBundle\Entity\ApplicationRecrutement;
 use PW6\RecrutementBundle\Form\RecrutementType;
+use PW6\RecrutementBundle\Form\ApplicationRecrutementType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -32,22 +33,25 @@ class RecrutementController extends Controller{
 
     $listApplications = $em
     ->getRepository('PW6RecrutementBundle:ApplicationRecrutement')
-    ->findBy(array('advert' => $advert));
+    ->findByAdvert($id);
 
     return $this->render('PW6RecrutementBundle:Advert:view.html.twig',
-    array('advert' => $advert, 'listApplications' => $listApplications));
+    array('advert' => $advert,'user'=> $this->getUser(), 'listApplications' => $listApplications));
   }
 
-  /**
-  * @Security("has_role('ROLE_AUTEUR')")
-  */
   public function addAction(Request $req) {
     $advert = new Recrutement();
     $form = $this->get('form.factory')->create(RecrutementType::class, $advert);
 
     if($req->isMethod('POST') && $form->handleRequest($req)->isValid()){
       $em = $this->getDoctrine()->getManager();
-      $advert->setAuthor($this->getUser());
+      $responsable = $advert->getResponsable();
+      $responsableID = $em->getRepository('PW6UserBundle:User')->findOneByUsername($responsable);
+      if(null === $responsableID){
+        throw new NotFoundHttpException('Le responsable n\'existe pas.');
+      }
+      $advert->setResponsable($responsableID->getID());
+      $advert->setAuthor($this->getUser()->getID());
       $em->persist($advert);
       $em->flush();
 
@@ -80,16 +84,22 @@ class RecrutementController extends Controller{
   }
 
   public function addAnonymeAction($id, Request $req) {
+      $repository = $this->getDoctrine()->getManager()->getRepository('PW6RecrutementBundle:Recrutement');
+      $recrutement = $repository->find($id);
+      if(null === $recrutement){
+          throw new NotFoundHttpException('L\'annonce d\'id '.$id.' n\'existe pas.');
+      }
       $advert = new ApplicationRecrutement();
-      $form = $this->get('form.factory')->create(ApplicationType::class, $advert);
+      $form = $this->get('form.factory')->create(ApplicationRecrutementType::class, $advert);
 
       if($req->isMethod('POST') && $form->handleRequest($req)->isValid()){
         $em = $this->getDoctrine()->getManager();
-        $advert->setAuthor($this->getUser());
-        $file = $product->getBrochure();
+        $file = $advert->getBrochure();
         $brochuresDir = $this->container->getParameter('kernel.root_dir').'/../web/uploads/brochures';
-        $file->move($brochuresDir, $fileName);
-        $product->setBrochure($fileName);
+        $file->move($brochuresDir, $file);
+        $advert->setBrochure($file);
+
+        $advert->setAdvert($recrutement);
         $em->persist($advert);
         $em->flush();
 

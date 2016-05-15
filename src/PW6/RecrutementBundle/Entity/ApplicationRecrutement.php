@@ -3,6 +3,7 @@
 namespace PW6\RecrutementBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ApplicationRecrutement
@@ -123,7 +124,7 @@ class ApplicationRecrutement
      *
      * @return ApplicationRecrutement
      */
-    public function setAdvert(\PW6\RecrutementBundle\Entity\Formation $advert)
+    public function setAdvert(\PW6\RecrutementBundle\Entity\Recrutement $advert)
     {
         $this->advert = $advert;
 
@@ -143,7 +144,7 @@ class ApplicationRecrutement
     /**
      * Set brochure
      *
-     * @param \PW6\RecrutementBundle\Entity\Recrutement $brochure
+     * @param string $brochure
      *
      * @return ApplicationRecrutement
      */

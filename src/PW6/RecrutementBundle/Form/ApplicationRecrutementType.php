@@ -13,8 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class RecrutementType extends AbstractType
+class ApplicationRecrutementType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -23,13 +24,9 @@ class RecrutementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title',          TextType::class)
-            ->add('content',        TextareaType::class)
-            ->add('requirements',   TextType::class)
-            ->add('at',             TextType::class)
-            ->add('responsable',    TextType::class)
-            ->add('time',           NumberType::class)
-            ->add('save',           SubmitType::class)
+        ->add('author',         TextType::class)
+        ->add ('brochure',      FileType::class, array('label' => 'Brochure (PDF file)'))
+        ->add('save',           SubmitType::class)
         ;
     }
 
@@ -39,7 +36,7 @@ class RecrutementType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PW6\RecrutementBundle\Entity\Recrutement'
+            'data_class' => 'PW6\RecrutementBundle\Entity\ApplicationRecrutement'
         ));
     }
 }
