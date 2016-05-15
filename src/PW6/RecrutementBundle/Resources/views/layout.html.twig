@@ -8,17 +8,20 @@
 
 {% block menu %}
 
-{% if is_granted('ROLE_USER') %}
-    <a href="{{ path('pw6_recrutement_gestionCandidat') }}">Voir ses annonces de gestionnaire</a>
+{% if app.user is not null %}
+  {% if app.user.getRole() == 'ROLE_USER' %}
+      <a href="{{ path('pw6_recrutement_gestionCandidat') }}">Voir ses annonces de gestionnaire</a>
+    {% endif %}
 {% endif %}
 
     <h3>Les recrutements disponibles</h3>
     <ul>
         <li><a href="{{ path('pw6_recrutement_home') }}">Accueil</a></li>
-        {% if is_granted('ROLE_AUTEUR') %}
-            <li><a href="{{ path('pw6_recrutement_add') }}">Ajouter un poste</a></li>
+        {% if app.user is not null %}
+          {% if app.user.getRole() == 'ROLE_ADMIN' %}
+              <li><a href="{{ path('pw6_recrutement_add') }}">Ajouter un poste</a></li>
+          {% endif %}
         {% endif %}
-
     </ul>
     <h4>Dernières annonces</h4>
     {{ render(controller('PW6RecrutementBundle:Recrutement:menu')) }}

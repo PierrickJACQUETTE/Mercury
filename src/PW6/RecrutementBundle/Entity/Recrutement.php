@@ -77,13 +77,6 @@ class Recrutement
     private $time;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="nb", type="integer")
-     */
-    private $nb;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="responsable", type="string", length=255)
@@ -350,28 +343,4 @@ class Recrutement
         return $this->responsable;
     }
 
-    
-    /**
-     * Set nb
-     *
-     * @param integer $nb
-     *
-     * @return Recrutement
-     */
-    public function setNb($nb)
-    {
-        $this->nb = $nb;
-
-        return $this;
-    }
-
-    /**
-     * Get nb
-     *
-     * @return integer
-     */
-    public function getNb()
-    {
-        return $this->nb;
-    }
 }
