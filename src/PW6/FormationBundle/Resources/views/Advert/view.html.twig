@@ -28,21 +28,6 @@
         {% endif %}
     </div>
 
-    {% if user.role == 'ROLE_ADMIN' %}
-    {% for item in list %}
-        <li>{{ item.author }}
-            <a href="{{ path('pw6_admin_up', {'id': item.id }) }}">
-                <i class="glyphicon glyphicon-ok"></i>
-            </a>
-            <a href="{{ path('pw6_admin_up', {'id': item.id }) }}">
-                <i class="glyphicon glyphicon-remove"></i>
-            </a>
-        </li>
-    {% else %}
-        <li>Pas encore d'application</li>
-    {% endfor %}
-    {% endif %}
-
     <br>
     <p>
         <a href="{{ path('pw6_formation_home') }}" class="btn btn-default">
@@ -53,7 +38,7 @@
             <i class="glyphicon glyphicon-edit"></i> Modifier cette formation
         </a>
         {% endif %}
-        {% if user.role == 'ROLE_USER' %}
+        {% if user.role == 'ROLE_USER' and nb != 0 %}
         <a href="{{ path('pw6_formation_apply', {'id': advert.id }) }}" class="btn btn-success">
             <i class="glyphicon glyphicon-chevron-right"></i> Appliquer à cette formation
         </a>

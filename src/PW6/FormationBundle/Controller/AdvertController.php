@@ -29,23 +29,19 @@
                 ->getRepository('PW6FormationBundle:Application')
                 ->findBy(array('advert' => $advert));
 
-            $max = sizeof($listApplications);
             $nb = $advert->getNb();
 
             return $this->render('PW6FormationBundle:Advert:view.html.twig',
-                array('advert' => $advert, 'user'=> $this->getUser(), 'listApplications' => $listApplications, 'max' => $max, 'nb' => $nb));
+                array('advert' => $advert, 'user'=> $this->getUser(), 'listApplications' => $listApplications, 'nb' => $nb));
         }
 
-        /**
-         * @Security("has_role('ROLE_AUTEUR')")
-         */
         public function addAction(Request $req) {
             $advert = new Formation();
             $form = $this->get('form.factory')->create(FormationType::class, $advert);
 
             if($req->isMethod('POST') && $form->handleRequest($req)->isValid()){
                 $em = $this->getDoctrine()->getManager();
-                $advert->setAuthor($this->getUser());
+                $advert->setAuthor($this->getUser()->getUsername());
                 $em->persist($advert);
                 $em->flush();
 
@@ -93,6 +89,10 @@
             if (($var - $tmp) < 0) {
                 return $this->render('PW6FormationBundle:Advert:error.html.twig');
             }
+
+            $tmp = $advert->getNb();
+            $advert->setNb($tmp - 1);
+
             $this->getUser()->getPerso()->setFormation($var - $tmp);
 
             $em = $this->getDoctrine()->getManager();
