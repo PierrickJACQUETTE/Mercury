@@ -18,9 +18,9 @@ class UserController extends Controller{
         $perso = $user->getPerso();
         if($user == null){ throw $this->createNotFoundException("L'utilisateur ".$id." n'existe pas."); }
         if($this->getUser() == null){ throw $this->createAccessDeniedException("Veuillez-vous connecter."); }
-        //if($user->getUsername() != $this->getUser()->getUsername()){ throw $this->createAccessDeniedException("Un profil est personnel."); }
+        $apply = $this->getDoctrine()->getManager()->getRepository("PW6FormationBundle:Application")->findByAuthor($user->getUsername());
         return $this->render("PW6UserBundle:User:view.html.twig",
-            array("page_name"=>"Utilisateur", "user"=>$user, "perso"=>$perso));
+            array("page_name"=>"Utilisateur", "user"=>$user, "perso"=>$perso, "apply" => $apply));
     }
 
     public function editAction(Request $req, $id){

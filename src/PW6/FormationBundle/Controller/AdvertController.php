@@ -84,24 +84,21 @@
                 throw new NotFoundHttpException('L\'annonce d\'id '.$id.' n\'existe pas.');
             }
 
-            $check = $this->getDoctrine()->getManager()->getRepository('PW6FormationBundle:Application');
-            $tmp = $check->findBy(array('author' => $this->getUser()->getUsername(), 'id' => $id));
-            if (null === $tmp) {
-                $apply = new Application();
-                $apply->setAuthor($this->getUser()->getUsername());
-                $apply->setAdvert($advert);
+            $apply = new Application();
+            $apply->setAuthor($this->getUser()->getUsername());
+            $apply->setAdvert($advert);
 
-                $var = $this->getUser()->getPerso()->getFormation();
-                $tmp = $advert->getTime();
-                if (($var - $tmp) < 0) {
-                    return $this->render('PW6FormationBundle:Advert:error.html.twig');
-                }
-                $this->getUser()->getPerso()->setFormation($var - $tmp);
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($apply);
-                $em->flush();
+            $var = $this->getUser()->getPerso()->getFormation();
+            $tmp = $advert->getTime();
+            if (($var - $tmp) < 0) {
+                return $this->render('PW6FormationBundle:Advert:error.html.twig');
             }
+            $this->getUser()->getPerso()->setFormation($var - $tmp);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($apply);
+            $em->flush();
+
             return $this->render('PW6FormationBundle:Advert:apply.html.twig', array('id' => $id));
         }
 
@@ -136,6 +133,11 @@
                 ->getRepository('PW6FormationBundle:Formation')
                 ->findBy(array(),array('id' => 'DESC'), 5);
             return $this->render('PW6FormationBundle:Advert:menu.html.twig', array('listAdverts' => $listAdverts));
+        }
+
+        public function mineAction(){
+            $list = $this->getDoctrine()->getRepository('PW6FormationBundle:Application')->findBy(array('author' => $this->getUser()->getUsername()));
+            return $this->render('PW6FormationBundle:Advert:mine.html.twig', array('list' => $list));
         }
     }
 ?>

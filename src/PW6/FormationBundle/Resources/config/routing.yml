@@ -36,9 +36,12 @@ pw6_formation_delete:
     requirements:
         id:   \d+
 
+pw6_formation_mine:
+    path:     /mine
+    defaults:
+        _controller: PW6FormationBundle:Advert:mine
+
 pw6_formation_error:
     path:     /error
     defaults:
         _controller: PW6FormationBundle:Advert:error
-    requirements:
-        id:   \d+

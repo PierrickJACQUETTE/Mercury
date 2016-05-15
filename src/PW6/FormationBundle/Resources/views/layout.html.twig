@@ -12,6 +12,8 @@
         <li><a href="{{ path('pw6_formation_home') }}">Accueil</a></li>
         {% if app.user.getRole() == 'ROLE_ADMIN' %}
             <li><a href="{{ path('pw6_formation_add') }}">Ajouter une formation</a></li>
+        {% else %}
+            <li><a href="{{ path('pw6_formation_mine') }}">Vos formations</a></li>
         {% endif %}
 
     </ul>

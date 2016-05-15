@@ -29,6 +29,7 @@ class RecrutementType extends AbstractType
             ->add('at',             TextType::class)
             ->add('responsable',    TextType::class)
             ->add('time',           NumberType::class)
+            ->add('budget',         NumberType::class)
             ->add('save',           SubmitType::class)
         ;
     }

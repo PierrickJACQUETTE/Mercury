@@ -41,6 +41,7 @@ class Application
      */
     public $advert;
 
+
     /**
      * @ORM\Column(name="valid", type="boolean")
      */
@@ -178,5 +179,29 @@ class Application
     public function getValid()
     {
         return $this->valid;
+    }
+
+    /**
+     * Set authorId
+     *
+     * @param \PW6\FormationBundle\Entity\User $authorId
+     *
+     * @return Application
+     */
+    public function setAuthorId(\PW6\FormationBundle\Entity\User $authorId)
+    {
+        $this->author_id = $authorId;
+
+        return $this;
+    }
+
+    /**
+     * Get authorId
+     *
+     * @return \PW6\FormationBundle\Entity\User
+     */
+    public function getAuthorId()
+    {
+        return $this->author_id;
     }
 }
