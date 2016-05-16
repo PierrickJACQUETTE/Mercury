@@ -42,24 +42,4 @@ class UserController extends Controller{
         }
         return $this->render('PW6UserBundle:User:edit.html.twig',array('form'=>$form->createView()));
     }
-
-    /**
-     * @Security("has_role('ROLE_AUTEUR')")
-     */
-    public function deleteAction(Request $req, $id){
-        $user = $this->getDoctrine()->getManager()->getRepository("PW6UserBundle:User")->find($id);
-        if($user == null){ throw $this->createNotFoundException("L'utilisateur ".$id." n'existe pas."); }
-        if($this->getUser() == null){ throw $this->createAccessDeniedException("Veuillez-vous connecter."); }
-        if($user->getUsername() != $this->getUser()->getUsername()){
-            throw $this->createAccessDeniedException("Vous n'êtes pas autorisés à voir les profils des autres.");
-        }
-        $perso = $this->getDoctrine()->getManager()->getRepository("PW6UserBundle:Personnel")->findBy(array('perso_id' => $id));
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($user);
-        $em->flush();
-        $this->get('security.token_storage')->setToken(null);
-        $request->getSession()->invalidate();
-
-        return $this->redirect($this->generateUrl("homepage"));
-    }
 }

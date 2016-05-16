@@ -41,13 +41,15 @@
 </div>
 
 <p>
+    {% if app.user.getRole() == 'ROLE_ADMIN' %}
+    <a href="{{ path('pw6_admin_index') }}" class="btn btn-default">
+        <i class="glyphicon glyphicon-chevron-left"></i> Revenir sur la liste
+    </a>
+    {% endif %}
     <a href="{{ path('pw6_user_edit', {'id': user.id }) }}" class="btn btn-warning">
         <i class="glyphicon glyphicon-edit"></i> Modifier mon profil
     </a>
     {% if app.user.getRole() == 'ROLE_ADMIN' %}
-    <a href="{{ path('pw6_user_delete', {'id': user.id }) }}" class="btn btn-danger">
-        <i class="glyphicon glyphicon-trash"></i> Supprimer ce profil
-    </a>
     <a href="{{ path('pw6_admin_up', {'id': user.id }) }}" class="btn btn-primary">
         <i class="glyphicon glyphicon-tower"></i> Ajouter ce profil aux administrateurs
     </a>

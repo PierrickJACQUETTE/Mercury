@@ -88,12 +88,12 @@
             $tmp = $advert->getTime();
             if (($var - $tmp) < 0) {
                 return $this->render('PW6FormationBundle:Advert:error.html.twig');
+            } else {
+                $this->getUser()->getPerso()->setFormation($var - $tmp);
             }
 
             $tmp = $advert->getNb();
             $advert->setNb($tmp - 1);
-
-            $this->getUser()->getPerso()->setFormation($var - $tmp);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($apply);

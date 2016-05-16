@@ -8,6 +8,7 @@ use PW6\UserBundle\Entity\User;
 use PW6\UserBundle\Entity\Personnel;
 use PW6\UserBundle\Form\PersonnelType;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdminController extends Controller{
 
@@ -27,7 +28,7 @@ class AdminController extends Controller{
     public function upAction($id){
         $user = $this->getDoctrine()->getManager()->getRepository("PW6UserBundle:User")->find($id);
         if($user == null){
-            throw new Exception("Impossible d'ajouter cet utilisateur à la liste des admin (id:".$id.")", 1);
+            throw new NotFoundHttpException("Impossible d'ajouter cet utilisateur à la liste des admin (id:".$id.")");
         }
         $role = $user->getRole();
         if($role != 'ROLE_ADMIN'){

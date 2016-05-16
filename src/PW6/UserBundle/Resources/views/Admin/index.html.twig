@@ -5,23 +5,29 @@
 {% block header %}<h1>Liste du personnel</h1>{% endblock %}
 
 {% block body %}
-    <ul>
-        {% for item in list %}
-            <li>
-                <a href="{{ path('pw6_user_view', {'id': item.id}) }}">
-                    {{ item.username }}
-                </a>,
-                {{ item.fname }} {{ item.pname }} {{ item.id }}
-                <a href="{{ path('pw6_admin_up', {'id': item.id }) }}">
-                    <i class="glyphicon glyphicon-log-in"></i> En faire un administrateur
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-    <br>
-    <p>
-        <a href="{{ path('pw6_admin_add') }}" class="btn btn-primary">
-            <i class="glyphicon glyphicon-log-in"></i> Ajouter un utilisateur
+{% if app.user.getRole() == 'ROLE_ADMIN' %}
+<ul>
+    {% for item in list %}
+    <li>
+        <a href="{{ path('pw6_user_view', {'id': item.id}) }}">
+            {{ item.username }}
+        </a>,
+        {{ item.fname }} {{ item.pname }} {{ item.id }}
+        <a href="{{ path('pw6_admin_up', {'id': item.id }) }}">
+            <i class="glyphicon glyphicon-log-in"></i> En faire un administrateur
         </a>
-    </p>
+    </li>
+    {% endfor %}
+</ul>
+<br>
+<p>
+    <a href="{{ path('pw6_admin_add') }}" class="btn btn-primary">
+        <i class="glyphicon glyphicon-log-in"></i> Ajouter un utilisateur
+    </a>
+</p>
+{% else %}
+<a href="{{ path('homepage') }}" class="btn btn-default">
+    <i class="glyphicon glyphicon-chevron-left"></i> Vous n'êtes pas autorisé à être ici, revenir sur l'acueil.
+</a>
+{% endif %}
 {% endblock %}

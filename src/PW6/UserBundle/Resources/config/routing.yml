@@ -12,13 +12,6 @@ pw6_user_edit:
     requirements:
         id:   \d+
 
-pw6_user_delete:
-    path:     /delete/{id}
-    defaults:
-        _controller: PW6UserBundle:User:delete
-    requirements:
-        id:   \d+
-
 pw6_admin_up:
     path:   /admin/up/{id}
     defaults:
