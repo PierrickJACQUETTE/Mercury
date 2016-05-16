@@ -1,0 +1,4 @@
+services:
+#    pw6_recrutement.example:
+#        class: PW6\RecrutementBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

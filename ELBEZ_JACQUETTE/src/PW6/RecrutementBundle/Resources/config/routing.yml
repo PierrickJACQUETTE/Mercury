@@ -1,0 +1,42 @@
+pw6_recrutement_home:
+    path:     /
+    defaults:
+        _controller: PW6RecrutementBundle:Recrutement:index
+
+pw6_recrutement_view:
+    path:     /advert/{id}
+    defaults:
+        _controller: PW6RecrutementBundle:Recrutement:view
+    requirements:
+        id:   \d+
+
+pw6_recrutement_add:
+    path:     /add
+    defaults:
+        _controller: PW6RecrutementBundle:Recrutement:add
+
+pw6_recrutement_edit:
+    path:     /edit/{id}
+    defaults:
+        _controller: PW6RecrutementBundle:Recrutement:edit
+    requirements:
+        id:   \d+
+
+pw6_recrutement_delete:
+    path:     /delete/{id}
+    defaults:
+        _controller: PW6RecrutementBundle:Recrutement:delete
+    requirements:
+        id:   \d+
+
+pw6_recrutement_addAnonyme:
+    path:     /addAnonyme/{id}
+    defaults:
+        _controller: PW6RecrutementBundle:Recrutement:addAnonyme
+    requirements:
+        id:   \d+
+
+pw6_recrutement_gestionCandidat:
+    path:     /gestionCandidat
+    defaults:
+        _controller: PW6RecrutementBundle:Recrutement:gestionCandidat

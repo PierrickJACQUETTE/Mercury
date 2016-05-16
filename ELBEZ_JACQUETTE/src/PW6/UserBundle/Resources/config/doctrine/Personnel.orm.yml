@@ -1,0 +1,41 @@
+PW6\UserBundle\Entity\Personnel:
+    type: entity
+    table: null
+    repositoryClass: PW6\UserBundle\Repository\PersonnelRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        fname:
+            type: string
+            length: 255
+        pname:
+            type: string
+            length: 255
+        username:
+            type: string
+            length: 255
+            unique: true
+        birth:
+            type: datetime
+        date:
+            type: datetime
+        sex:
+            type: boolean
+        contrat:
+            type: boolean
+        time:
+            type: integer
+        salary:
+            type: integer
+        formation:
+            type: integer
+        superieur:
+            type: string
+            length: 255
+        time:
+            type: integer
+    lifecycleCallbacks: {  }

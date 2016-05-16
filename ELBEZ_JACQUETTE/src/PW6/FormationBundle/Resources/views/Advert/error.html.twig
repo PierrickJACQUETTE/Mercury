@@ -1,0 +1,14 @@
+{% extends 'PW6FormationBundle::layout.html.twig' %}
+
+{% block title %}Erreur - {{ parent() }}{% endblock %}
+
+{% block pw6formation_body %}
+<div class="well well-lg">
+    <p>Votre demande ne peut aboutir, vous n'avez pas assez de jours de formation restants</p>
+</div>
+<p>
+    <a href="{{ path('pw6_formation_home') }}" class="btn btn-default">
+        <i class="glyphicon glyphicon-chevron-left"></i> Retour à la liste
+    </a>
+</p>
+{% endblock %}

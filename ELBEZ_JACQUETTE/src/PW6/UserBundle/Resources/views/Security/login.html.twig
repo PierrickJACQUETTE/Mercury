@@ -1,0 +1,35 @@
+{% extends '::layout.html.twig' %}
+
+{% block header %}
+    <h1>Connexion</h1>
+{% endblock %}
+
+{% block body %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6 well">
+            <form action="{{ path('login_check') }}" method="post" role="form">
+                <div class="row">
+                    <div class="form-group col-xs-12 col-md-10 col-md-offset-1">
+                        <label for="username">Login :</label>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-12 col-md-10 col-md-offset-1">
+                        <label for="password">Password :</label>
+                        <input type="password" id="password" name="_password" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-12 col-md-10 col-md-offset-1">
+                        <input type="submit" value="Connexion" class="btn btn-info"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

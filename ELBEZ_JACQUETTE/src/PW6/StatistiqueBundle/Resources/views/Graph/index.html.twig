@@ -1,0 +1,13 @@
+{% extends 'PW6StatistiqueBundle::layout.html.twig' %}
+
+{% block title %}Accueil - {{ parent() }}{% endblock %}
+
+{% block PW6statistique_body %}
+    <h2>Listes des Statistique</h2>
+    <ul>
+      <li><a href="{{ path('pw6_recrutement_sexe') }}">Sexe</a></li>
+      <li><a href="{{ path('pw6_recrutement_contrat') }}">Contrat</a></li>
+      <li><a href="{{ path('pw6_recrutement_age') }}">Age</a></li>
+      <li><a href="{{ path('pw6_recrutement_salaire') }}">Salaire</a></li>
+    </ul>
+{% endblock %}

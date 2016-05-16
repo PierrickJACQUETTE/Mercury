@@ -1,0 +1,91 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+
+\newcommand*{\escape}[1]{\texttt{\textbackslash#1}}
+
+\usetheme{PaloAlto}
+
+\title{Mercury - Espace de travail pour la gestion des ressources humaines d'une
+entreprise}
+\subtitle{Rapport du Projet}
+\author[]{ELBEZ Samuel 21200353, \\ JACQUETTE Pierrick 21305551}
+\date{Avril 2016}
+\institute[L3 S6 -- Informatique]{Université Paris 7 Diderot}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}
+	\frametitle{Sommaire}
+	\tableofcontents	
+\end{frame}
+
+\section{Les modules}
+\begin{frame}
+	\begin{center}
+		{\Huge Les modules}
+	\end{center}
+\end{frame}
+\begin{frame}{Les modules}
+	 \begin{itemize}
+		 \item<1-> Gestion des formations
+ 		 \item<2-> Génération de statistiques sur la base de données
+		 \item<3-> Gestion des recrutements
+		 \item<4-> Chat de discussion
+	\end{itemize}
+\end{frame}
+
+\section{Les outils}
+\begin{frame}{Le style}
+	\begin{itemize}
+		 \item<1-> Symfony
+		 \item<2-> Bootstrap : https://maxcdn.bootstrapcdn.com/ bootstrap/3.3.6/css/bootstrap.min.css
+		 \item<3-> Node.js
+		 \item<4-> Bundle existant : ObHighchartsBundle : Graphique
+		\end{itemize}
+\end{frame}
+
+\section{Les fichiers modifiés}
+\begin{frame}
+	\begin{center}
+		{\Huge Les fichiers modifiés}
+	\end{center}
+\end{frame}
+\begin{frame}{Les fichiers modifiés}
+	 \begin{itemize}
+		 \item<1-> \textbf{app : }
+		  	\begin{itemize}
+		  		\item<2-> AppKernel.php
+		  		\item<3-> \textbf{config : }
+		  		\begin{itemize}
+		  			\item<4-> parameters.yml
+		  			\item<4-> routing.yml
+		  			\item<4-> security.yml
+		  		\end{itemize}
+		  		\item<5-> \textbf{Resources/views : }
+		  			\begin{itemize}
+		  				\item<6-> base.html.twig
+		  				\item<6-> layout.html.twig
+		  				\item<6-> \textbf{default : } index.html.twig
+		  			\end{itemize}
+		  	\end{itemize}
+ 		 \item<7-> \textbf{src/PW6}
+ 		 	\begin{itemize}
+		  		\item<8-> \textbf{FormationBundle}
+		  		\item<9-> \textbf{RecrutementBundle}
+		  		\item<10-> \textbf{UserBundle}
+		  	\end{itemize}
+		  \item<11-> \textbf{Tchat}
+	\end{itemize}
+\end{frame}
+
+\end{document}
+

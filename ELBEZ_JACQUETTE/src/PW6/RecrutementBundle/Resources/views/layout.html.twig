@@ -1,0 +1,39 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Recrutement - {{ parent() }}{% endblock %}
+
+{% block header %}
+    <h1>Plateforme des Recrutements</h1>
+{% endblock %}
+
+{% block menu %}
+
+{% if app.user is not null %}
+  {% if app.user.getRole() == 'ROLE_USER' %}
+      <a href="{{ path('pw6_recrutement_gestionCandidat') }}">Voir ses annonces de gestionnaire</a>
+    {% endif %}
+{% endif %}
+
+    <h3>Les recrutements disponibles</h3>
+    <ul>
+        <li><a href="{{ path('pw6_recrutement_home') }}">Accueil</a></li>
+        {% if app.user is not null %}
+          {% if app.user.getRole() == 'ROLE_ADMIN' %}
+              <li><a href="{{ path('pw6_recrutement_add') }}">Ajouter un poste</a></li>
+          {% endif %}
+        {% endif %}
+    </ul>
+    <h4>Dernières annonces</h4>
+    {{ render(controller('PW6RecrutementBundle:Recrutement:menu')) }}
+{% endblock %}
+
+
+{% block body %}
+
+    <h1>Recrutement</h1>
+    <h5>Nous sommes le {{ 'now'|date('d/m/Y') }}</h5>
+    <hr>
+    {% block pw6recrutement_body %}{% endblock %}
+    {% block pw6gestionnaire_body %}{% endblock %}
+
+{% endblock %}

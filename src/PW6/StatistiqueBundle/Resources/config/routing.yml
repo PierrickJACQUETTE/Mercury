@@ -1,0 +1,24 @@
+pw6_statistique_home:
+      path:     /
+      defaults:
+          _controller: PW6StatistiqueBundle:Graph:index
+
+pw6_recrutement_sexe:
+    path:     /sexe
+    defaults:
+        _controller: PW6StatistiqueBundle:Graph:sexe
+
+pw6_recrutement_contrat:
+    path:     /contrat
+    defaults:
+        _controller: PW6StatistiqueBundle:Graph:contrat
+
+pw6_recrutement_age:
+    path:     /age
+    defaults:
+        _controller: PW6StatistiqueBundle:Graph:age
+
+pw6_recrutement_salaire:
+    path:     /salaire
+    defaults:
+        _controller: PW6StatistiqueBundle:Graph:salaire

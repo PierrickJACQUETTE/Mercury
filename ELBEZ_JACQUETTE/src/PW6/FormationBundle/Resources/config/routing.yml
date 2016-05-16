@@ -1,0 +1,42 @@
+pw6_formation_home:
+    path:     /
+    defaults:
+        _controller: PW6FormationBundle:Advert:index
+
+pw6_formation_view:
+    path:     /advert/{id}
+    defaults:
+        _controller: PW6FormationBundle:Advert:view
+    requirements:
+        id:   \d+
+
+pw6_formation_add:
+    path:     /add
+    defaults:
+        _controller: PW6FormationBundle:Advert:add
+
+pw6_formation_apply:
+    path:     /apply/{id}
+    defaults:
+        _controller: PW6FormationBundle:Advert:apply
+    requirements:
+        id:   \d+
+
+pw6_formation_edit:
+    path:     /edit/{id}
+    defaults:
+        _controller: PW6FormationBundle:Advert:edit
+    requirements:
+        id:   \d+
+
+pw6_formation_delete:
+    path:     /delete/{id}
+    defaults:
+        _controller: PW6FormationBundle:Advert:delete
+    requirements:
+        id:   \d+
+
+pw6_formation_error:
+    path:     /error
+    defaults:
+        _controller: PW6FormationBundle:Advert:error

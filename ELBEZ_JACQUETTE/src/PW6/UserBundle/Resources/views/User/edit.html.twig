@@ -1,0 +1,68 @@
+{% extends "::layout.html.twig" %}
+
+{% block header %}<h1>Modification du profil</h1>{% endblock %}
+
+{% block body %}
+{{ parent() }}
+<div class="row">
+    <div class="col-xs-12 col-md-8">
+        <div class="well">
+            <p class="text-danger center"><em>Tous les champs sont obligatoires</em></p>
+            {{ form_start(form, {'attr': {'class': 'form-horizontal', 'role' : 'form'}}) }}
+
+            {{ form_errors(form) }}
+
+            <div class="form-group">
+              {{ form_label(form.username, "Identifiant", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+              {{ form_errors(form.username) }}
+              <div class="col-sm-7">
+                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+              </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.mail, "E-mail", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                {{ form_errors(form.mail) }}
+                <div class="col-sm-7">
+                    {{ form_widget(form.mail, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.perso, "Identifiant entreprise", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                {{ form_errors(form.perso) }}
+                <div class="col-sm-7">
+                    {{ form_widget(form.perso, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+              {{ form_label(form.password.first, "Mot de passe", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+              {{ form_errors(form.password.first) }}
+              <div class="col-sm-7">
+                {{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              {{ form_label(form.password.second, "Confirmation", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+              {{ form_errors(form.password.second) }}
+              <div class="col-sm-7">
+                {{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
+              </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-offset-9">
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+                </div>
+            </div>
+
+            {{ form_rest(form) }}
+
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+</div>
+{% endblock %}

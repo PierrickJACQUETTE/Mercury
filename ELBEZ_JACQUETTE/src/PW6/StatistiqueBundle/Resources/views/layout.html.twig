@@ -1,0 +1,21 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Statistique - {{ parent() }}{% endblock %}
+
+{% block header %}
+    <h1>Plateforme des statistiques</h1>
+{% endblock %}
+
+{% block menu %}
+
+    <h3>Les statistiques disponibles</h3>
+    <ul>
+        <li><a href="{{ path('pw6_statistique_home') }}">Accueil</a></li>
+    </ul>
+{% endblock %}
+
+
+{% block body %}
+    {% block PW6statistique_body %}{% endblock %}
+
+{% endblock %}

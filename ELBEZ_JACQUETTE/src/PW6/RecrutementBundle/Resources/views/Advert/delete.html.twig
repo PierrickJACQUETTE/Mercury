@@ -1,0 +1,24 @@
+{% extends 'PW6RecrutementBundle::layout.html.twig' %}
+{% block title %}Supprimer un recrutement -{{ parent() }}{% endblock %}
+{% block pw6recrutement_body %}
+    <h2>Supprimer un recrutement</h2>
+    <h5>
+        Êtes-vous certain de vouloir supprimer l'annnonce suivante ?
+    </h5>
+    <div class="well well-lg">
+        <p>
+            Titre : {{ advert.title }}
+        </p>
+        <p>
+            Contenu : {{ advert.content }}
+        </p>
+    </div>
+    <form action="{{ path('pw6_recrutement_delete', {'id': advert.id}) }}" method="post">
+        <a href="{{ path('pw6_recrutement_view', {'id': advert.id}) }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à l'annonce
+        </a>
+        <input type="submit" value="Supprimer" class="btn btn-danger"/>
+        {{ form_rest(form) }}
+    </form>
+{% endblock %}

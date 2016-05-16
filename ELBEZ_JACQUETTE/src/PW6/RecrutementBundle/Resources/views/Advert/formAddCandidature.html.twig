@@ -1,0 +1,22 @@
+<h3>Formulaire de candidature</h3>
+
+<div class="well">
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {{ form_errors(form) }}
+    {% if form.date is defined %}{{ form_row(form.date) }}{% endif %}
+
+    <div class="form-group">
+        {{ form_label(form.author, 'Name Prenom', {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_errors(form.author) }}
+        <div class="col-sm-5">
+            {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    {{ form_row(form.cv) }}
+    {{ form_row(form.lDM) }}
+
+    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+</div>

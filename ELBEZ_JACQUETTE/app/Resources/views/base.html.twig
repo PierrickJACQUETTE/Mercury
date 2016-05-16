@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Mercury{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+		{% block stylesheets %}
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        {% endblock %}
+    </head>
+    <body>
+	{% block nav %}
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="{{ path('homepage') }}">Mercury</a>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="{{ path('signin') }}">
+                <span class="glyphicon glyphicon-user"></span>Inscription
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('login') }}">
+                <span class="glyphicon glyphicon-log-in"></span> Connexion
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('logout') }}">
+                <span class="glyphicon glyphicon-log-out"></span> Deconnexion
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    {% endblock %}
+    {% block body %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,63 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/dataTables.bootstrap.min.css') }}" type="text/css" />
+{% endblock %}
+
+{% block main %}
+{{ parent() }}
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-bordered table-striped" id="table_salarie" data-page-length='50'>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Date de naissance</th>
+                    <th>Sexe</th>
+                    <th>Date d'entrée</th>
+                    <th>Type de contrat</th>
+                    <th>Durée contrat</th>
+                    <th>Salaire</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for salarie in salaries %}
+                <tr>
+                    <td>{{ salarie.nom }}</td>
+                    <td>{{ salarie.prenom }}</td>
+                    <td>{{ salarie.dateNaissance.format("j/m/y") }}</td>
+                    <td>{{ salarie.sexe }}</td>
+                    <td>{{ salarie.dateEntre.format("j/m/y") }}</td>
+                    <td>{{ salarie.typeContrat|upper }}</td>
+                    <td>{{ salarie.dureeContrat }}</td>
+                    <td>{{ salarie.salaire }}€</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" charset="utf8" src="{{ asset('bundles/app/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" charset="utf8" src="{{ asset('bundles/app/js/dataTables.bootstrap.min.js') }}"></script>
+    <script>
+    $(document).ready( function () {
+        $('#table_salarie').DataTable({
+            "oLanguage": {
+                "sSearch": "Rechercher :",
+                "sInfo": " _START_ à _END_ sur _TOTAL_ salariés",
+                "sLengthMenu": "Afficher _MENU_ salariés",
+                "oPaginate": {
+                    "sNext": "Suivant",
+                    "sPrevious": "Précédent"
+                }
+            }
+        });
+    } );
+    </script>
+{% endblock %}

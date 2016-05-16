@@ -1,0 +1,70 @@
+{% extends 'PW6RecrutementBundle::layout.html.twig' %}
+
+{% block pw6recrutement_body %}
+    <h2>{{ advert.title }}</h2>
+    <i>{{ advert.author }}, le {{ advert.date|date('d/m/Y H:i:s') }}
+        {% if advert.updatedAt is not null %}, modifiée le {{ advert.updatedAt|date('d/m/Y H:i:s') }}{% endif %}</i>
+    <div class="well well-lg">
+        <p>
+            Contenu : <br><br> {{ advert.content }}
+        </p>
+        <br>
+        <p>
+            Responsable : {{ advert.responsable }}
+        </p>
+        <p>
+            Lieu : {{ advert.at }}
+        </p>
+        <p>
+            Conditions : {{ advert.requirements }}
+        </p>
+        <p>
+            Temps (jours) : {{ advert.time }}
+        </p>
+    </div>
+
+    <p>
+        <a href="{{ path('pw6_recrutement_home') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i> Retour à la liste
+        </a>
+        {% if user is not null %}
+          {% if user.getRole() == 'ROLE_USER' %}
+          <ul>
+              {% for candidat in listApplications %}
+                  <li>
+                      par {{ candidat.author }},
+                      le {{ candidat.date|date('d/m/Y') }}
+                      <a href="{{ asset('uploads/CV/' ~ candidat.cv) }}">View CV</a>
+                      <a href="{{ asset('uploads/LDM/' ~ candidat.lDM) }}">View LDM</a>
+                  </li>
+              {% else %}
+                  <li>Pas de Candidature disponibles</li>
+              {% endfor %}
+          </ul>
+          {% endif %}
+        {% endif %}
+
+        {% if user is not null %}
+          {% if user.getRole() == 'ROLE_ADMIN' %}
+              <a href="{{ path('pw6_recrutement_edit', {'id': advert.id }) }}" class="btn btn-warning">
+                  <i class="glyphicon glyphicon-edit"></i> Modifier ce recrutement
+                </a>
+                {% endif %}
+        {% endif %}
+
+        {% if user is null %}
+            <a href="{{ path('pw6_recrutement_addAnonyme', {'id': advert.id }) }}" class="btn btn-success">
+                <i class="glyphicon glyphicon-chevron-right"></i> Postuler à ce poste
+            </a>
+        {% endif %}
+
+        {% if user is not null %}
+          {% if user.getRole() == 'ROLE_ADMIN' %}
+              <a href="{{ path('pw6_recrutement_delete', {'id': advert.id }) }}" class="btn btn-danger">
+                  <i class="glyphicon glyphicon-trash"></i> Supprimer  ce recrutement
+                </a>
+          {% endif %}
+        {% endif %}
+
+    </p>
+{% endblock %}

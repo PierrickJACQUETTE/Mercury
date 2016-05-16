@@ -1,0 +1,102 @@
+{% extends "::layout.html.twig" %}
+
+{% block header %}<h1>Inscription</h1>{% endblock %}
+
+{% block body %}
+{{ parent() }}
+<div class="row">
+    <div class="col-xs-12 col-md-8">
+        <div class="well">
+            <p class="text-danger center"><em>Tous les champs sont obligatoires</em></p>
+            <p><em>Si le contrat est un CDI, mettre 0.</em></p>
+            {{ form_start(form, {'attr': {'class': 'form-horizontal', 'role' : 'form'}}) }}
+
+            {{ form_errors(form) }}
+
+            <h3>Informations Personnelles</h3>
+            <div class="form-group">
+              {{ form_label(form.fname, "Famille", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+              {{ form_errors(form.fname) }}
+              <div class="col-sm-7">
+                {{ form_widget(form.fname, {'attr': {'class': 'form-control'}}) }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              {{ form_label(form.pname, "Prénom", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+              {{ form_errors(form.pname) }}
+              <div class="col-sm-7">
+                {{ form_widget(form.pname, {'attr': {'class': 'form-control'}}) }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              {{ form_label(form.username, "Identifiant entreprise", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+              {{ form_errors(form.username) }}
+              <div class="col-sm-7">
+                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+              </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.birth, "Naissance (JJ-MM-AAAA)", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                {{ form_errors(form.birth) }}
+                <div class="col-sm-7">
+                    {{ form_widget(form.birth, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+              {{ form_label(form.sex, "Sexe", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+              {{ form_errors(form.sex) }}
+              <div class="col-sm-7">
+                {{ form_widget(form.sex, {'attr': {'class': 'form-control'}}) }}
+              </div>
+            </div>
+
+            <h3>Informations Entreprises</h3>
+            <div class="form-group">
+              {{ form_label(form.contrat, "Contrat", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+              {{ form_errors(form.contrat) }}
+              <div class="col-sm-7">
+                {{ form_widget(form.contrat, {'attr': {'class': 'form-control'}}) }}
+              </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.time, "Durée (Mois)", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                {{ form_errors(form.time) }}
+                <div class="col-sm-7">
+                    {{ form_widget(form.time, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+              {{ form_label(form.salary, "Salaire (Mensuel)", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+              {{ form_errors(form.salary) }}
+              <div class="col-sm-7">
+                {{ form_widget(form.salary, {'attr': {'class': 'form-control'}}) }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              {{ form_label(form.superieur, "Supérieur", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+              {{ form_errors(form.superieur) }}
+              <div class="col-sm-7">
+                {{ form_widget(form.superieur, {'attr': {'class': 'form-control'}}) }}
+              </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-offset-8">
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+                </div>
+            </div>
+          {{ form_rest(form) }}
+
+          {{ form_end(form) }}
+        </div>
+
+    </div>
+</div>
+{% endblock %}
