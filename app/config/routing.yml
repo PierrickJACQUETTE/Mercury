@@ -29,3 +29,7 @@ signin:
     path:       /signin
     defaults:
         _controller: PW6UserBundle:Security:signin
+
+pw6_statistique:
+    resource: "@PW6StatistiqueBundle/Resources/config/routing.yml"
+    prefix:   /statistique

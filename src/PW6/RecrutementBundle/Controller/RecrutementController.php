@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+
+
 class RecrutementController extends Controller{
 
   public function indexAction()  {
@@ -20,7 +22,7 @@ class RecrutementController extends Controller{
   }
 
   public function gestionCandidatAction()  {
-    $listAdverts = $this->getDoctrine()->getRepository('PW6RecrutementBundle:Recrutement')->findAll();
+    $listAdverts = $this->getDoctrine()->getRepository('PW6RecrutementBundle:Recrutement')->findByResponsable($this->getUser()->getID());
     return $this->render('PW6RecrutementBundle:Advert:gestionCandidat.html.twig', array('listAdverts' => $listAdverts));
   }
 
@@ -30,10 +32,13 @@ class RecrutementController extends Controller{
     if(null === $advert){
       throw new NotFoundHttpException('L\'annonce d\'id '.$id.' n\'existe pas.');
     }
-
-    $listApplications = $em
-    ->getRepository('PW6RecrutementBundle:ApplicationRecrutement')
-    ->findByAdvert($id);
+    $listApplications = null;
+    if($this->getUser() != null){
+    if($advert->getResponsable() == $this->getUser()->getID()){
+      $listApplications = $em
+      ->getRepository('PW6RecrutementBundle:ApplicationRecrutement')
+      ->findByAdvert($id);
+    }}
 
     return $this->render('PW6RecrutementBundle:Advert:view.html.twig',
     array('advert' => $advert,'user'=> $this->getUser(), 'listApplications' => $listApplications));
