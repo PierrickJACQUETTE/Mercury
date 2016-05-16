@@ -94,10 +94,19 @@ class RecrutementController extends Controller{
 
       if($req->isMethod('POST') && $form->handleRequest($req)->isValid()){
         $em = $this->getDoctrine()->getManager();
-        $file = $advert->getBrochure();
-        $brochuresDir = $this->container->getParameter('kernel.root_dir').'/../web/uploads/brochures';
+        $file = $advert->getCv();
+        $brochuresDir = $this->container->getParameter('kernel.root_dir').'/../web/uploads/CV';
         $file->move($brochuresDir, $file);
-        $advert->setBrochure($file);
+        $list = split('/',$file);
+        $file = $list[2];
+        $advert->setCv($file);
+
+        $file = $advert->getLDM();
+        $brochuresDir = $this->container->getParameter('kernel.root_dir').'/../web/uploads/LDM';
+        $file->move($brochuresDir, $file);
+        $list = split('/',$file);
+        $file = $list[2];
+        $advert->setLDM($file);
 
         $advert->setAdvert($recrutement);
         $em->persist($advert);

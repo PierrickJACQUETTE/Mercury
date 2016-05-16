@@ -9,12 +9,32 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container">
-            <a class="navbar-brand" href="{{ path('homepage') }}">Mercury</a>
-          </div>
-        </nav>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+	{% block nav %}
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="{{ path('homepage') }}">Mercury</a>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="{{ path('signin') }}">
+                <span class="glyphicon glyphicon-user"></span>Inscription
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('login') }}">
+                <span class="glyphicon glyphicon-log-in"></span> Connexion
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('logout') }}">
+                <span class="glyphicon glyphicon-log-out"></span> Deconnexion
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    {% endblock %}
+    {% block body %}{% endblock %}
+    {% block javascripts %}{% endblock %}
     </body>
 </html>
